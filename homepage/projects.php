@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+
 <html>
+
     <head>
         <meta name="description" content="Sumith | Coder | Book Addict | IITB-CSE">
+
         <title>PHP Projects</title>
+
         <link rel="stylesheet" href="assets/css/projects.css">
+
         <link rel="shortcut icon" href="assets/img/icons/favicon.ico">
+
     </head>
+
     <body>
     <center><h1>PHP Projects</h1></center>
     <left><h3>Roommate-Finder</h3></left>
@@ -38,5 +45,7 @@
         <input type="submit" name="btnSendForm" value="Send" />
     </form>
     <br>
+
     </body>
+
 </html>
