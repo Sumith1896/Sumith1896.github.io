@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+permalink: /about/
 ---
 
 <p class="message">
@@ -16,5 +17,9 @@ My interests are
 * **Reading**: I love reading novels. My favourite authors are Dan Brown, Agatha Christie, Sir Arthur Conan Doyle to name a few. The genres I like are thrillers and philosophical.
 I am also interested in fine arts, sketching and cycling, and occasionally spend time on these too.
 
-That's more about me. I'll keep this updated.<br/>
+That's more about me. I'll keep this updated with my GSoC progress, books that I read and interesting things that I encounter.<br/>
 Thanks for reading!
+
+---
+
+[Blog]({{site.baseurl}}blog) · [GitHub](https://github.com/Sumith1896) · [Gmail](<mailto:sumith1896@gmail.com>) · [Facebook](https://www.facebook.com/sumith.iitb) 
