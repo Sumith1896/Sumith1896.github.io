@@ -2,7 +2,7 @@
 
 My personal blog depending on [Jekyll](http://jekyllrb.com/).
 
-Blog theme - [modified-lanyon]https://github.com/pravj/modified-lanyon)
+Blog theme - [modified-lanyon](https://github.com/pravj/modified-lanyon)
 
 Hosted at [sumith1896.github.io](http://sumith1896.github.io)
 
