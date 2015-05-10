@@ -1,6 +1,3 @@
-# Author : Pravendra Singh
-# Twitter : @hackpravj
-#
 # map tags to posts and store generated data to site.pages variable
 # here this data is being used to render all posts under each tags on a seperate page
 

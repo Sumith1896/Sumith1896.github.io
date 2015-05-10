@@ -11,9 +11,9 @@ plugins:          ./_plugins
 # Setup
 title:            Sumith
 tagline:          ': Optimized Awesomeness'
-description:      'Programmer · Foodie · Book Addict'
-message:          'Continuous and focused effort brings happiness'
-url:              sumith1896.github.io
+description:      'Programmer · Book Addict · Foodie'
+message:          'Continuous and focused efforts bring happiness'
+url:              http://sumith1896.github.io/
 paginate:         1
 
 author:
@@ -35,7 +35,7 @@ destination: ./_site
 
 timezone: Asia/Mumbai
 
-devurl: sumith1896.github.io
+devurl: http://sumith1896.github.io/
 port: 4000
 host: 0.0.0.0
 baseurl: /

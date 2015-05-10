@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <p class="message">
-  Hey there! It seems that you have stumbled on my blog.
+	Hey there! It seems that you have stumbled on my blog.
 </p>
 
 Hello, I am Sumith, a first year Computer Science and Engineering undergraduate at [IIT Bombay](http://www.iitb.ac.in/).<br/>
@@ -22,4 +22,4 @@ Thanks for reading!
 
 ---
 
-[Blog]({{site.baseurl}}blog) · [GitHub](https://github.com/Sumith1896) · [Gmail](<mailto:sumith1896@gmail.com>) · [Facebook](https://www.facebook.com/sumith.iitb) 
+[Blog]({{site.baseurl}}) · [GitHub](https://github.com/Sumith1896) · [Gmail](<mailto:sumith1896@gmail.com>) · [Facebook](https://www.facebook.com/sumith.iitb) 

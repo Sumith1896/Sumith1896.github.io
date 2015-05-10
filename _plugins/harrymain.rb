@@ -1,9 +1,7 @@
-# Harry
-# =====
 # Plugin to have :smiley: in your jekyll blogs
 # it uses the famous Emoji-Cheat-Sheet : 'http://www.emoji-cheat-sheet.com/'
 #
-# https://github.com/pravj/Harry
+
 
 require 'net/http'
 

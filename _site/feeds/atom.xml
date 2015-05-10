@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Sumith</title>
+ <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
+ <link href="http://sumith1896.github.io//"/>
+ <updated>2015-05-10T08:53:26+00:00</updated>
+ <id>http://sumith1896.github.io/</id>
+ <author>
+   <name>Sumith</name>
+   <email>sumith1896@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Google Summer Of Code with SymPy</title>
+   <link href="http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy"/>
+   <updated>2015-05-10T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/gsoc/GSOC2015.png&quot; alt=&quot;GSoC 2015&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Hi there! The Google Summer of Code results are out and I have been selected. As mentioned in a previous post, my project of &lt;code&gt;Implementing polynomial module in CSymPy&lt;/code&gt; has been selected and I get to work with &lt;a href=&quot;http://www.sympy.org/&quot;&gt;SymPy&lt;/a&gt; under &lt;a href=&quot;https://www.python.org/psf/&quot;&gt;Python Software Foundation.&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;The excitement&lt;/h3&gt;
+
+&lt;p&gt;I really thank the community for accepting a freshman do a project. The community over at SymPy is so helpful and the working environment real fun that has motivated me to take up this project.&lt;br/&gt;
+My mentors are &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej Čertík&lt;/a&gt; himself and &lt;a href=&quot;https://github.com/sushant-hiray&quot;&gt;Sushant Hiray&lt;/a&gt;, who is a previous GSoC-cer at SymEngine(then CSymPy).&lt;br/&gt;
+I&amp;#39;d also like to congratulate &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt;, &lt;a href=&quot;https://github.com/isuruf&quot;&gt;Isuru&lt;/a&gt;, &lt;a href=&quot;https://github.com/abinashmeher999&quot;&gt;Abinash&lt;/a&gt; for getting projects under SymEngine and all others who have been selected under SymPy and Python Software Foundations in general.&lt;br/&gt;
+I am excited for the summer to follow and the great learning experience ahead.&lt;/p&gt;
+
+&lt;h3&gt;SymPy and SymEngine&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: right&quot; src=&quot;/assets/gsoc/sympy.png&quot;&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SymPy is a Python library for symbolic mathematics. It aims to become a full-featured &lt;strong&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Computer_algebra_system&quot;&gt;Computer Algebra System&lt;/a&gt;&lt;/strong&gt; (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/sympy/symengine&quot;&gt;SymEngine&lt;/a&gt; is a fast symbolic manipulation library, written in C++.
+Plans to be the fast swappable SymPy core and also a CAS on it&amp;#39;s own. We are currently writing Ruby and Julia wrappers for it too.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3&gt;The Project&lt;/h3&gt;
+
+&lt;p&gt;SymEngine currently lacks a polynomial module which is very essential in achieving SymEngine&amp;#39;s goal of being the fastest CAS ever. Having a polynomial module is a core concern and implementing a fast module also help in achieving a fast series module and other modules. Once implemented, SymEngine will be more capable as a fast optional SymPy core which we think is good to ship before 1.0 and at the same time SymEngine becomes a powerful CAS on it&amp;#39;s own.&lt;/p&gt;
+
+&lt;p&gt;You can find the proposal &lt;a href=&quot;https://github.com/sympy/sympy/wiki/GSoC-2015-Application-Sumith-:-Implementing-polynomial-module-in-CSymPy&quot;&gt;here&lt;/a&gt; for more detailed description of the project.&lt;/p&gt;
+
+&lt;p&gt;Looking forward to a great summer and times to follow.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>hello, world!</title>
+   <link href="http://sumith1896.github.io//hello-world/"/>
+   <updated>2015-03-26T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//hello-world</id>
+   <content type="html">&lt;p&gt;Hey, this is my first blog post. I will be applying for Google Summer of Code program 2015 sponsored by Google for the organisation CSymPy/SymPy. I propose to implement polynomial module for CSymPy. Polynomial module forms the core of any Computer Algebra System. Implementing polynomial module in CSymPy will be start for many other implementations. Also this module is guaranteed to be fast getting it more closer to the goal of being the fast optional SymPy.&lt;/p&gt;
+
+&lt;p&gt;If selected, I will update this blog to track my progress and get feedback from the community&lt;/p&gt;
+
+&lt;p&gt;Good day!&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
