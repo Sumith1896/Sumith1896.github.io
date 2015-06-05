@@ -4,13 +4,55 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-05-25T10:57:15+00:00</updated>
+ <updated>2015-06-05T14:08:40+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 1</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-1"/>
+   <updated>2015-06-05T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-1</id>
+   <content type="html">&lt;p&gt;Hi again, this post contains the first report of my GSoC progress, even though it&amp;#39;s week 2. &lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;I have completed the &lt;code&gt;UnivariatePolynomial&lt;/code&gt; implementation in &lt;a href=&quot;https://github.com/sympy/symengine/pull/454&quot;&gt;PR 454&lt;/a&gt;, the PR is ready to be merged and is up for final review. This &lt;code&gt;SymEngine&lt;/code&gt; class can handle univariate polynomials and can handle all the basic polynomial manipulation.&lt;/p&gt;
+
+&lt;p&gt;The current functionality of &lt;code&gt;UnivariatePolynomial&lt;/code&gt; are:&lt;br/&gt;
+* two constructors of &lt;code&gt;UnivariatePolynomial&lt;/code&gt; class, one using a &lt;code&gt;dict&lt;/code&gt; of degree to coefficient and other is using a dense vector of coefficients. Note that this implementation is sparse. &lt;br/&gt;
+* printing, same output pattern as that of SymPy&lt;br/&gt;
+* &lt;code&gt;from_dict&lt;/code&gt; which returns the appropriate &lt;code&gt;Basic&lt;/code&gt; type on passing the &lt;code&gt;dict&lt;/code&gt;&lt;br/&gt;
+* &lt;code&gt;dict_add_term&lt;/code&gt; to add a new term to the &lt;code&gt;dict&lt;/code&gt;&lt;br/&gt;
+* &lt;code&gt;max_coef()&lt;/code&gt;, &lt;code&gt;diff()&lt;/code&gt;, &lt;code&gt;eval()&lt;/code&gt; as the name suggests&lt;br/&gt;
+* some bool check funtions to check specific cases like &lt;code&gt;is_zero()&lt;/code&gt;, &lt;code&gt;is_one()&lt;/code&gt;, etc.&lt;br/&gt;
+* also the &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;sub&lt;/code&gt;, &lt;code&gt;neg&lt;/code&gt; and &lt;code&gt;mul&lt;/code&gt; functions. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;What I learnt here was having a testing environment setup first speeds up the process of implementation and things go in the right direction.&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;UnivariatePolynomial&lt;/code&gt; uses &lt;code&gt;std::map&lt;/code&gt;, I plan to switch to &lt;code&gt;std::unordered_map&lt;/code&gt; or other specialized data structures before benchmarking the class and comparing speeds so that we get a decent speed.&lt;br/&gt;
+The, to be implemented, multivariate class will be called &lt;code&gt;Polynomial&lt;/code&gt;. Note that two classes are high level, because they can take part in SymPy expressions.&lt;/p&gt;
+
+&lt;p&gt;The plan is to implement lower level classes with various data structures, as well as using Piranha. These lower level classes do not use RCP at all, thus they could be faster for some applications. The user could then call specialized classes if needed for a given application (if we implement any).&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 2 and Week 3&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Implementation of the hashtable along with &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt; by this weekend.&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Implement &lt;code&gt;Polynomial&lt;/code&gt; using &lt;code&gt;gmp&lt;/code&gt; with Kronecker packing.&lt;br/&gt;
+In the latter weeks, we&amp;#39;ll consider switching from packed structure to tuple and &lt;code&gt;int&lt;/code&gt; for small coefficients and &lt;code&gt;mpz_class&lt;/code&gt; for larger. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That&amp;#39;s all for now. Catch you next week.&lt;br/&gt;
+&lt;strong&gt;Adiós&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Gearing up for GSoC</title>
