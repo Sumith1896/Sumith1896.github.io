@@ -4,7 +4,7 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-05T14:08:40+00:00</updated>
+ <updated>2015-06-05T16:14:28+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
@@ -21,7 +21,7 @@
 
 &lt;h3&gt;Progress&lt;/h3&gt;
 
-&lt;p&gt;I have completed the &lt;code&gt;UnivariatePolynomial&lt;/code&gt; implementation in &lt;a href=&quot;https://github.com/sympy/symengine/pull/454&quot;&gt;PR 454&lt;/a&gt;, the PR is ready to be merged and is up for final review. This &lt;code&gt;SymEngine&lt;/code&gt; class can handle univariate polynomials and can handle all the basic polynomial manipulation.&lt;/p&gt;
+&lt;p&gt;I have completed the &lt;code&gt;UnivariatePolynomial&lt;/code&gt; implementation in &lt;a href=&quot;https://github.com/sympy/symengine/pull/454&quot;&gt;PR 454&lt;/a&gt;, the PR is reviewed and merged. This &lt;code&gt;SymEngine&lt;/code&gt; class can handle univariate polynomials and can handle all the basic polynomial manipulation.&lt;/p&gt;
 
 &lt;p&gt;The current functionality of &lt;code&gt;UnivariatePolynomial&lt;/code&gt; are:&lt;br/&gt;
 * two constructors of &lt;code&gt;UnivariatePolynomial&lt;/code&gt; class, one using a &lt;code&gt;dict&lt;/code&gt; of degree to coefficient and other is using a dense vector of coefficients. Note that this implementation is sparse. &lt;br/&gt;
@@ -43,11 +43,18 @@ The, to be implemented, multivariate class will be called &lt;code&gt;Polynomial
 
 &lt;h3&gt;Targets for Week 2 and Week 3&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Implementation of the hashtable along with &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt; by this weekend.&lt;br/&gt;&lt;/li&gt;
-&lt;li&gt;Implement &lt;code&gt;Polynomial&lt;/code&gt; using &lt;code&gt;gmp&lt;/code&gt; with Kronecker packing.&lt;br/&gt;
-In the latter weeks, we&amp;#39;ll consider switching from packed structure to tuple and &lt;code&gt;int&lt;/code&gt; for small coefficients and &lt;code&gt;mpz_class&lt;/code&gt; for larger. &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;First aim is to use the already implemented polynomials in &lt;a href=&quot;https://github.com/sympy/symengine/blob/master/src/rings.cpp&quot;&gt;&lt;code&gt;rings&lt;/code&gt;&lt;/a&gt; in SymEngine, look at the &lt;a href=&quot;https://github.com/sympy/symengine/blob/master/benchmarks/expand2b.cpp&quot;&gt;expand2b&lt;/a&gt; benchmark and try to speed it up by: &lt;br/&gt;
+* Making use of Piranha int &lt;br/&gt;
+* Using Kronecker packing for exponents &lt;/p&gt;
+
+&lt;p&gt;If we get satisfactory speed, we wrap it in &lt;code&gt;Polynomial&lt;/code&gt; class. This can further be optimized using our very own class Integer, where in it we switch between int and mpzclass automatically (we should use it everywhere in SymEngine instead of mpzclass) and hashmap in future.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tasks&lt;/strong&gt; &lt;br/&gt;
+* have an option of &lt;code&gt;Piranha&lt;/code&gt; in cmake &lt;br/&gt;
+* code for packing exponents into machine int64 &lt;br/&gt;
+* try to use Piranha&amp;#39;s integer to see how it performs &lt;br/&gt;
+If time permits &lt;br/&gt;
+* Implement faster hashmap this weekend with &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;#39;s all for now. Catch you next week.&lt;br/&gt;
 &lt;strong&gt;Adiós&lt;/strong&gt;&lt;/p&gt;

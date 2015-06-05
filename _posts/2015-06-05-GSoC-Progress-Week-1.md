@@ -12,7 +12,7 @@ Hi again, this post contains the first report of my GSoC progress, even though i
 
 ### Progress
 
-I have completed the `UnivariatePolynomial` implementation in [PR 454](https://github.com/sympy/symengine/pull/454), the PR is ready to be merged and is up for final review. This `SymEngine` class can handle univariate polynomials and can handle all the basic polynomial manipulation.
+I have completed the `UnivariatePolynomial` implementation in [PR 454](https://github.com/sympy/symengine/pull/454), the PR is reviewed and merged. This `SymEngine` class can handle univariate polynomials and can handle all the basic polynomial manipulation.
 
 The current functionality of `UnivariatePolynomial` are:<br/>
 * two constructors of `UnivariatePolynomial` class, one using a `dict` of degree to coefficient and other is using a dense vector of coefficients. Note that this implementation is sparse. <br/>
@@ -34,9 +34,18 @@ The plan is to implement lower level classes with various data structures, as we
 
 ### Targets for Week 2 and Week 3
 
-* Implementation of the hashtable along with [Shivam](https://github.com/shivamvats) by this weekend.<br/>
-* Implement `Polynomial` using `gmp` with Kronecker packing.<br/>
-In the latter weeks, we'll consider switching from packed structure to tuple and `int` for small coefficients and `mpz_class` for larger. 
+First aim is to use the already implemented polynomials in [`rings`](https://github.com/sympy/symengine/blob/master/src/rings.cpp) in SymEngine, look at the [expand2b](https://github.com/sympy/symengine/blob/master/benchmarks/expand2b.cpp) benchmark and try to speed it up by: <br/>
+* Making use of Piranha int <br/>
+* Using Kronecker packing for exponents 
+
+If we get satisfactory speed, we wrap it in `Polynomial` class. This can further be optimized using our very own class Integer, where in it we switch between int and mpzclass automatically (we should use it everywhere in SymEngine instead of mpzclass) and hashmap in future.
+
+**Tasks** <br/>
+* have an option of `Piranha` in cmake <br/>
+* code for packing exponents into machine int64 <br/>
+* try to use Piranha's integer to see how it performs <br/>
+If time permits <br/>
+* Implement faster hashmap this weekend with [Shivam](https://github.com/shivamvats)
 
 That's all for now. Catch you next week.<br/>
 **Adiós**
