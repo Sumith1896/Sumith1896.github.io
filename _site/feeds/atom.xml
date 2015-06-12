@@ -4,7 +4,7 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-12T19:58:34+00:00</updated>
+ <updated>2015-06-12T20:06:10+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
@@ -43,7 +43,7 @@ The above two dependencies come as separate CMake option as well. We feel that t
 * Re-wrote &lt;code&gt;expand2b&lt;/code&gt; to use packed, now &lt;code&gt;expand2c&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
 
 &lt;p&gt;Very nice speedup was obtained from using the packed structure, a more detailed report can be found &lt;a href=&quot;https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine&quot;&gt;here&lt;/a&gt;. &lt;br/&gt;
-But we are still far from &lt;code&gt;Piranha&lt;/code&gt; and we have lots to do :).&lt;/p&gt;
+But we are still far from &lt;code&gt;Piranha&lt;/code&gt; and we have lots to do :)&lt;/p&gt;
 
 &lt;p&gt;Most of the week&amp;#39;s time went to learning to link libraries and writing cmake files for my own projects so that I could figure what was happening in &lt;a href=&quot;https://github.com/sympy/symengine/pull/464&quot;&gt;PR 464&lt;/a&gt;. Now I feel it was very easy a task and shouldn&amp;#39;t have consumed the time it did.&lt;/p&gt;
 

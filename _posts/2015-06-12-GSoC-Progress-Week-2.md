@@ -34,7 +34,7 @@ The above two dependencies come as separate CMake option as well. We feel that t
 * Re-wrote `expand2b` to use packed, now `expand2c` <br/>
 
 Very nice speedup was obtained from using the packed structure, a more detailed report can be found [here](https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine). <br/>
-But we are still far from `Piranha` and we have lots to do :).
+But we are still far from `Piranha` and we have lots to do :)
 
 Most of the week's time went to learning to link libraries and writing cmake files for my own projects so that I could figure what was happening in [PR 464](https://github.com/sympy/symengine/pull/464). Now I feel it was very easy a task and shouldn't have consumed the time it did.
 
