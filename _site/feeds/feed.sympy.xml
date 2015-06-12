@@ -4,13 +4,62 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-05T16:14:28+00:00</updated>
+ <updated>2015-06-12T19:58:34+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 2</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-2"/>
+   <updated>2015-06-12T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-2</id>
+   <content type="html">&lt;p&gt;Hello, this post contains the second report of my GSoC progress. At one point, I had changed the deadline from Sundays to Fridays, but I seem to be running a week late on the post names. Will be corrected next week.&lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;We decided that instead of coding up the &lt;code&gt;Polynomial&lt;/code&gt; upfront, we try to speed up the expand2b benchmark i.e. try to nail speed at a lower level, then think of the design decisions and wrap it up into &lt;code&gt;Polynomial&lt;/code&gt; class. &lt;br/&gt;
+The plan was this: &lt;br/&gt;
+* Add support for &lt;code&gt;Piranha&lt;/code&gt; in &lt;code&gt;SymEngine&lt;/code&gt; CMake &lt;br/&gt;
+* Implement packing of exponents and a check function to ensure it fits, use this to fasten expand2b &lt;br/&gt;
+* Use Piranha&amp;#39;s integer and benchmark expand2b again &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;The faster hashtable was kept for later.&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/sympy/symengine/pull/464&quot;&gt;PR 464&lt;/a&gt; was merged. &lt;br/&gt;
+Implements support for &lt;code&gt;Piranha&lt;/code&gt; in CMake along with it&amp;#39;s dependencies &lt;code&gt;Boost&lt;/code&gt; and &lt;code&gt;PTHREAD&lt;/code&gt;. &lt;br/&gt;
+The above two dependencies come as separate CMake option as well. We feel that the &lt;code&gt;Boost&lt;/code&gt; support can be improved, that can be done at a later stage.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/sympy/symengine/pull/470&quot;&gt;PR 470&lt;/a&gt; Speeding up the benchmark. &lt;br/&gt;
+* The pack and check function were implemented &lt;br/&gt;
+* Used &lt;code&gt;std::valarray&lt;/code&gt; instead &lt;code&gt;std::vector&lt;/code&gt;(inspired by &lt;a href=&quot;https://github.com/sympy/symengine/issues/111&quot;&gt;issue 111&lt;/a&gt;) but the benchmark slowed down, hence change was not adopted &lt;br/&gt;
+* Implemented functions &lt;code&gt;poly2packed()&lt;/code&gt; and &lt;code&gt;packed2poly()&lt;/code&gt;, for converting between the two representations &lt;br/&gt;
+* Implemented function &lt;code&gt;poly_mul2()&lt;/code&gt; for multiplying the packed polynomials &lt;br/&gt;
+* Re-wrote &lt;code&gt;expand2b&lt;/code&gt; to use packed, now &lt;code&gt;expand2c&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Very nice speedup was obtained from using the packed structure, a more detailed report can be found &lt;a href=&quot;https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine&quot;&gt;here&lt;/a&gt;. &lt;br/&gt;
+But we are still far from &lt;code&gt;Piranha&lt;/code&gt; and we have lots to do :).&lt;/p&gt;
+
+&lt;p&gt;Most of the week&amp;#39;s time went to learning to link libraries and writing cmake files for my own projects so that I could figure what was happening in &lt;a href=&quot;https://github.com/sympy/symengine/pull/464&quot;&gt;PR 464&lt;/a&gt;. Now I feel it was very easy a task and shouldn&amp;#39;t have consumed the time it did.&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 3&lt;/h3&gt;
+
+&lt;p&gt;My aim is to get all the code and optimization, possible at this level, done by next week, so that we can start wrapping in the coming weeks. &lt;br/&gt;
+* Use &lt;code&gt;piranha::integer&lt;/code&gt; for coefficients, benchmark &lt;br/&gt;
+* Implement switching between packed structure and tuple depending on whether exponents fit or not &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;If time permits, I want to implement a system to use &lt;code&gt;int&lt;/code&gt; for small cofficients and switch to &lt;code&gt;mpz_class&lt;/code&gt; when large.&lt;br/&gt;
+We have lots to do to hit the speed that we expect.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s all folks.&lt;br/&gt;
+&lt;strong&gt;Au Revoir&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 1</title>

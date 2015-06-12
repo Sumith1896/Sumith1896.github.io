@@ -11,7 +11,7 @@
 
   <title>
     
-      GSoC Progress - Week 1 &middot; Sumith
+      GSoC Progress - Week 2 &middot; Sumith
     
   </title>
 
@@ -121,10 +121,10 @@
         <div class="post">
   <span class="post-date">
     <a href="/timeline" class="timeline">
-      05 Jun 2015
+      12 Jun 2015
     </a>
   </span>
-  <h1 class="post-title">GSoC Progress - Week 1</h1>
+  <h1 class="post-title">GSoC Progress - Week 2</h1>
   <span class="post-tag">
       
         
@@ -152,47 +152,47 @@
 
   <hr>
 
-  <p>Hi again, this post contains the first report of my GSoC progress, even though it&#39;s week 2. </p>
+  <p>Hello, this post contains the second report of my GSoC progress. At one point, I had changed the deadline from Sundays to Fridays, but I seem to be running a week late on the post names. Will be corrected next week.</p>
 
 <h3>Progress</h3>
 
-<p>I have completed the <code>UnivariatePolynomial</code> implementation in <a href="https://github.com/sympy/symengine/pull/454">PR 454</a>, the PR is reviewed and merged. This <code>SymEngine</code> class can handle univariate polynomials and can handle all the basic polynomial manipulation.</p>
+<p>We decided that instead of coding up the <code>Polynomial</code> upfront, we try to speed up the expand2b benchmark i.e. try to nail speed at a lower level, then think of the design decisions and wrap it up into <code>Polynomial</code> class. <br/>
+The plan was this: <br/>
+* Add support for <code>Piranha</code> in <code>SymEngine</code> CMake <br/>
+* Implement packing of exponents and a check function to ensure it fits, use this to fasten expand2b <br/>
+* Use Piranha&#39;s integer and benchmark expand2b again <br/></p>
 
-<p>The current functionality of <code>UnivariatePolynomial</code> are:<br/>
-* two constructors of <code>UnivariatePolynomial</code> class, one using a <code>dict</code> of degree to coefficient and other is using a dense vector of coefficients. Note that this implementation is sparse. <br/>
-* printing, same output pattern as that of SymPy<br/>
-* <code>from_dict</code> which returns the appropriate <code>Basic</code> type on passing the <code>dict</code><br/>
-* <code>dict_add_term</code> to add a new term to the <code>dict</code><br/>
-* <code>max_coef()</code>, <code>diff()</code>, <code>eval()</code> as the name suggests<br/>
-* some bool check funtions to check specific cases like <code>is_zero()</code>, <code>is_one()</code>, etc.<br/>
-* also the <code>add</code>, <code>sub</code>, <code>neg</code> and <code>mul</code> functions. <br/></p>
-
-<p>What I learnt here was having a testing environment setup first speeds up the process of implementation and things go in the right direction.<br/></p>
+<p>The faster hashtable was kept for later.</p>
 
 <h3>Report</h3>
 
-<p>The <code>UnivariatePolynomial</code> uses <code>std::map</code>, I plan to switch to <code>std::unordered_map</code> or other specialized data structures before benchmarking the class and comparing speeds so that we get a decent speed.<br/>
-The, to be implemented, multivariate class will be called <code>Polynomial</code>. Note that two classes are high level, because they can take part in SymPy expressions.</p>
+<p><a href="https://github.com/sympy/symengine/pull/464">PR 464</a> was merged. <br/>
+Implements support for <code>Piranha</code> in CMake along with it&#39;s dependencies <code>Boost</code> and <code>PTHREAD</code>. <br/>
+The above two dependencies come as separate CMake option as well. We feel that the <code>Boost</code> support can be improved, that can be done at a later stage.</p>
 
-<p>The plan is to implement lower level classes with various data structures, as well as using Piranha. These lower level classes do not use RCP at all, thus they could be faster for some applications. The user could then call specialized classes if needed for a given application (if we implement any).</p>
+<p><a href="https://github.com/sympy/symengine/pull/470">PR 470</a> Speeding up the benchmark. <br/>
+* The pack and check function were implemented <br/>
+* Used <code>std::valarray</code> instead <code>std::vector</code>(inspired by <a href="https://github.com/sympy/symengine/issues/111">issue 111</a>) but the benchmark slowed down, hence change was not adopted <br/>
+* Implemented functions <code>poly2packed()</code> and <code>packed2poly()</code>, for converting between the two representations <br/>
+* Implemented function <code>poly_mul2()</code> for multiplying the packed polynomials <br/>
+* Re-wrote <code>expand2b</code> to use packed, now <code>expand2c</code> <br/></p>
 
-<h3>Targets for Week 2 and Week 3</h3>
+<p>Very nice speedup was obtained from using the packed structure, a more detailed report can be found <a href="https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine">here</a>. <br/>
+But we are still far from <code>Piranha</code> and we have lots to do :).</p>
 
-<p>First aim is to use the already implemented polynomials in <a href="https://github.com/sympy/symengine/blob/master/src/rings.cpp"><code>rings</code></a> in SymEngine, look at the <a href="https://github.com/sympy/symengine/blob/master/benchmarks/expand2b.cpp">expand2b</a> benchmark and try to speed it up by: <br/>
-* Making use of Piranha int <br/>
-* Using Kronecker packing for exponents </p>
+<p>Most of the week&#39;s time went to learning to link libraries and writing cmake files for my own projects so that I could figure what was happening in <a href="https://github.com/sympy/symengine/pull/464">PR 464</a>. Now I feel it was very easy a task and shouldn&#39;t have consumed the time it did.</p>
 
-<p>If we get satisfactory speed, we wrap it in <code>Polynomial</code> class. This can further be optimized using our very own class Integer, where in it we switch between int and mpzclass automatically (we should use it everywhere in SymEngine instead of mpzclass) and hashmap in future.</p>
+<h3>Targets for Week 3</h3>
 
-<p><strong>Tasks</strong> <br/>
-* have an option of <code>Piranha</code> in cmake <br/>
-* code for packing exponents into machine int64 <br/>
-* try to use Piranha&#39;s integer to see how it performs <br/>
-If time permits <br/>
-* Implement faster hashmap this weekend with <a href="https://github.com/shivamvats">Shivam</a></p>
+<p>My aim is to get all the code and optimization, possible at this level, done by next week, so that we can start wrapping in the coming weeks. <br/>
+* Use <code>piranha::integer</code> for coefficients, benchmark <br/>
+* Implement switching between packed structure and tuple depending on whether exponents fit or not <br/></p>
 
-<p>That&#39;s all for now. Catch you next week.<br/>
-<strong>Adiós</strong></p>
+<p>If time permits, I want to implement a system to use <code>int</code> for small cofficients and switch to <code>mpz_class</code> when large.<br/>
+We have lots to do to hit the speed that we expect.<br/></p>
+
+<p>That&#39;s all folks.<br/>
+<strong>Au Revoir</strong></p>
 
 </div>
 
@@ -210,9 +210,9 @@ If time permits <br/>
     
       <li>
         <h3>
-          <a href="/GSoC-Progress-Week-2">
-            GSoC Progress - Week 2
-            <small>12 Jun 2015</small>
+          <a href="/GSoC-Progress-Week-1">
+            GSoC Progress - Week 1
+            <small>05 Jun 2015</small>
           </a>
         </h3>
       </li>
