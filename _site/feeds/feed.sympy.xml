@@ -4,13 +4,62 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-12T20:06:10+00:00</updated>
+ <updated>2015-06-20T11:22:13+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 3 and 4</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-3-and-4"/>
+   <updated>2015-06-20T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-3-and-4</id>
+   <content type="html">&lt;p&gt;Hello, this post contains the third report of my GSoC progress. At one point, I had changed the deadline from Sundays to Fridays, but I seem to be running a week late on the post names. That has been corrected now&lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;We decided to replace &lt;code&gt;mpz_class&lt;/code&gt; with &lt;code&gt;piranha::integer&lt;/code&gt; for coefficients and &lt;code&gt;std::unordered_map&lt;/code&gt; with &lt;code&gt;piranha::hash_set&lt;/code&gt; for the container. We got the lower-level working with this data-structure in the last week. &lt;br/&gt;
+We decided to depend on &lt;code&gt;Piranha&lt;/code&gt; for the &lt;code&gt;Polynomial&lt;/code&gt; else our module won&amp;#39;t be upto the speed we expect it to. &lt;br/&gt;
+In future, we can write our hashtable and Integer as and when needed. &lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;The benchmarks results are: &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;expand2b&lt;/code&gt; has: &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Average: 108.2ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Maximum: 114ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Minimum: 107ms&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;while the latest &lt;code&gt;expand2d&lt;/code&gt; has: &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Average: 23ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Maximum: 23ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Minimum: 23ms&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;which is a nice 4-5x speed-up. &lt;br/&gt;
+The code for this(experimental) can be found in &lt;a href=&quot;https://github.com/sympy/symengine/pull/470&quot;&gt;470&lt;/a&gt;. &lt;br/&gt;
+A more detailed report can be found &lt;a href=&quot;https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine&quot;&gt;here&lt;/a&gt;. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;I also sent in a minor PR with some clean-ups that I felt neccessary in &lt;a href=&quot;https://github.com/sympy/symengine/pull/472&quot;&gt;472&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 5&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Wrap the the lower level into a &lt;code&gt;Polynomial&lt;/code&gt; class.&lt;/li&gt;
+&lt;li&gt;Have the functionality of atleast the &lt;code&gt;UnivariatePolynomial&lt;/code&gt; class.&lt;/li&gt;
+&lt;li&gt;Explore what kind of coefficients can be passed, since we have &lt;code&gt;piranha::integer&lt;/code&gt; we need to think of having &lt;code&gt;rational&lt;/code&gt; and &lt;code&gt;symbolic&lt;/code&gt; coefficients now itself.&lt;/li&gt;
+&lt;li&gt;Think of various areas where &lt;code&gt;Polynomial&lt;/code&gt; class needs to integrate in SymEngine for example &lt;code&gt;expand()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That&amp;#39;s all this week. &lt;br/&gt;
+&lt;strong&gt;Vaarwel&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 2</title>
