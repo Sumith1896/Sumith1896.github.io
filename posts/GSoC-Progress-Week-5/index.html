@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="keywords" content="sumith1896, sumith, iitb, sympy, books, github">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      GSoC Progress - Week 5 &middot; Sumith
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  </head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Programmer · Book Addict · Foodie</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://sumith1896.github.io">Blog</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="http://sumith1896.github.io/timeline">Archive</a>
+
+    <span class="sidebar-nav-item">Contact</span>
+    <a class="sidebar-nav-item" href="https://github.com/Sumith1896">GitHub</a>
+    <a class="sidebar-nav-item" href="mailto:sumith1896@gmail.com">Gmail</a>
+    <a class="sidebar-nav-item" href="https://www.facebook.com/sumith.iitb">Facebook</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2015. Sumith1896.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Sumith</a>
+            <small>: Optimized Awesomeness</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <span class="post-date">
+    <a href="/timeline" class="timeline">
+      26 Jun 2015
+    </a>
+  </span>
+  <h1 class="post-title">GSoC Progress - Week 5</h1>
+  <span class="post-tag">
+      
+        
+          <a href="/tags/#Programming">
+            Programming
+          </a>
+          &middot;
+        
+      
+        
+          <a href="/tags/#GSoC">
+            GSoC
+          </a>
+          &middot;
+        
+      
+        
+          <a href="/tags/#SymPy">
+            SymPy
+          </a>
+
+        
+      
+  </span>
+
+  <hr>
+
+  <p>Hello, this post contains the fourth report of my GSoC progress. We hit <code>Piranha</code>&#39;s speed,
+the highlight of this week. </p>
+
+<h3>Progress</h3>
+
+<p>We were able to reach <code>Piranha</code>&#39;s speed. At an average <code>14-ish ms</code> to the benchmark, we are happy enough (still can be improved) to start wrapping this low-level implementation to a <code>Polynomial</code> class. Last week I had reported speed <code>23ms</code> and this week we are better. <br/></p>
+
+<p>We had missed out a compiler flag, <code>DNDEBUG</code> to indicate <code>Release</code> mode of <code>Piranha</code> leading to slow-down, <a href="https://github.com/sympy/symengine/issues/482">#482</a>. <br/>
+Adding this compiler flag means we should not be using <code>assert</code> statement, which <code>SymEngine</code> does in <code>SYMENGINE_ASSERT</code> and test files too. These had to be sorted out if <code>Piranha</code> were to be a hard dependency of <code>SymEngine</code>&#39;s polynomial module. <br/></p>
+
+<p>Hence, the issue of moving the tests suite from <code>assert</code>s to a well-developed test framework came up again, <a href="https://github.com/sympy/symengine/issues/282">#282</a>. We explored a couple, but <code>Catch</code> still seemed to be the best option. <br/>
+<code>Catch</code> was implemented, which is a benefit to <code>SymEngine</code> in the long run too. <br/>
+As for the <code>SYMENGINE_ASSERT</code>, we decided to change our macro to raise an exception or just abort the program. <br/>
+<a href="https://github.com/philsquared/Catch">Catch</a> is a very good tool. We thank <a href="https://github.com/philsquared">Phil Nash</a> and all the contributors for making it.</p>
+
+<p>Next up, wrapping into <code>Polynomial</code>. <br/></p>
+
+<ul>
+<li><p>We need some functionality to convert a <code>SymEngine</code> expression(<code>Basic</code>) into one of <code>hashset</code> representations directly. Now I convert <code>basic</code> to <code>poly</code> and then to <code>hashset</code> as just getting the speed right was the issue. <br/></p></li>
+<li><p>Domains of coefficients need to be thought of. <code>SymPy</code> and <code>Sage</code> will be need to looked into and their APIs need to be studied. We need <code>ZZ</code>, <code>QQ</code> and <code>EX</code>, the work for <code>EX</code> has been done by <a href="https://github.com/bluescarni">Francesco Biscani</a>, this will be patched for the latest master and commited in his name.
+There could also be an automatic mode, which figures out the fastest representation for the given expression, at the price of a little slower conversion, as it needs to traverse the expression to figure out what representation fits. <br/></p></li>
+<li><p><code>tuple</code> to <code>packed</code> conversion when exponents don&#39;t fit. Also <code>encode</code> supports signed ints which is a boon to us, as we don&#39;t have to worry about negative exponents. For <code>rational</code> exponents we use tuple. <br/></p></li>
+</ul>
+
+<p>I still haven&#39;t figured out the reason for slow down of <code>expand2</code> and <code>expand2b</code> in my <code>packint</code> branch. I have been suggested to use <code>git bisect</code>. Will do next week.</p>
+
+<h3>Report</h3>
+
+<p><code>expand2d</code> results:</p>
+
+<p>Result of 10 execution:  <br/>
+<code>14ms</code> <br/>
+<code>14ms</code><br/>
+<code>14ms</code> <br/>
+<code>15ms</code> <br/>
+<code>14ms</code> <br/>
+<code>15ms</code> <br/>
+<code>14ms</code> <br/>
+<code>14ms</code> <br/>
+<code>15ms</code> <br/>
+<code>14ms</code> <br/></p>
+
+<p>Maximum: 15ms <br/>
+Minimum: 14ms <br/>
+Average: 14.3ms <br/></p>
+
+<p>Here, the <code>evaluate_sparsity()</code> gave the following result for the <code>hash_set</code> <br/></p>
+
+<p><code>0,11488</code> <br/>
+<code>1,3605</code> <br/>
+<code>2,1206</code> <br/>
+<code>3,85</code> <br/></p>
+
+<p><code>Piranha</code> has the following results <br/></p>
+
+<p><code>Average: 13.421ms</code> <br/>
+<code>Maximum: 13.875ms</code> <br/>
+<code>Minimum: 12.964ms</code>  <br/></p>
+
+<p>A more detailed report of benchmarks and comparisons can be found <a href="https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine">here</a></p>
+
+<p>A minor PR where MPFR was added as a Piranha dependency, <a href="https://github.com/sympy/symengine/pull/472">472</a> was merged. <br/></p>
+
+<p>Another PR in which the tests where moved to <code>Catch</code> is good to play with and merge, minor build nits remaining, <a href="https://github.com/sympy/symengine/pull/484">484</a>. <br/></p>
+
+<h3>Targets for Week 5</h3>
+
+<ul>
+<li>Figure out the reason for <a href="https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine#why-is-there-a-slowdown-in-packint-branch-for-expand-and-expand2b">slow down</a> in benchmarks, fix that. <br/></li>
+<li>Change the <code>SYMENGINE_ASSERT</code> <a href="https://github.com/sympy/symengine/blob/bbe3c9baf653d18d37e3bfcd424e0781786098c1/symengine/symengine_assert.h#L7">macro</a> to raise an <a href="https://github.com/sympy/symengine/blob/bbe3c9baf653d18d37e3bfcd424e0781786098c1/symengine/symengine_assert.h#L13">exception</a>. <br/></li>
+<li>Add the <code>DNDEBUG</code> flag for with <code>Piranha</code> builds, as now <code>SymEngine</code> doesn&#39;t use <code>assert</code>, close issue <a href="https://github.com/sympy/symengine/issues/482">#482</a>.</li>
+<li>Port <a href="https://github.com/bluescarni"><code>@bluescarni</code></a>&#39;s <a href="https://github.com/sympy/symengine/compare/master...bluescarni:expression">work</a> of <code>EX</code> to SymEngine. <br/></li>
+<li>Wrap the lower-level into <code>Polynomial</code> for signed integer exponents in <code>ZZ</code> domain with functionality atleast that of <code>UnivariatePolynomial</code>. <br/></li>
+</ul>
+
+<p>That&#39;s all this week. <br/>
+<strong>Sbohem</strong></p>
+
+</div>
+
+<div class="social">
+  <span>
+    <iframe src="http://ghbtns.com/github-btn.html?user=sumith1896&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20">
+    </iframe>
+  </span>
+</div>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-3-and-4">
+            GSoC Progress - Week 3 and 4
+            <small>20 Jun 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-2">
+            GSoC Progress - Week 2
+            <small>12 Jun 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-1">
+            GSoC Progress - Week 1
+            <small>05 Jun 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="disqus">
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'sumith1896';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+</div>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48537986-1', 'sumith1896.github.io');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

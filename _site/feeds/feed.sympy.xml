@@ -4,13 +4,98 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-20T11:22:13+00:00</updated>
+ <updated>2015-06-26T23:03:38+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 5</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-5"/>
+   <updated>2015-06-26T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-5</id>
+   <content type="html">&lt;p&gt;Hello, this post contains the fourth report of my GSoC progress. We hit &lt;code&gt;Piranha&lt;/code&gt;&amp;#39;s speed,
+the highlight of this week. &lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;We were able to reach &lt;code&gt;Piranha&lt;/code&gt;&amp;#39;s speed. At an average &lt;code&gt;14-ish ms&lt;/code&gt; to the benchmark, we are happy enough (still can be improved) to start wrapping this low-level implementation to a &lt;code&gt;Polynomial&lt;/code&gt; class. Last week I had reported speed &lt;code&gt;23ms&lt;/code&gt; and this week we are better. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;We had missed out a compiler flag, &lt;code&gt;DNDEBUG&lt;/code&gt; to indicate &lt;code&gt;Release&lt;/code&gt; mode of &lt;code&gt;Piranha&lt;/code&gt; leading to slow-down, &lt;a href=&quot;https://github.com/sympy/symengine/issues/482&quot;&gt;#482&lt;/a&gt;. &lt;br/&gt;
+Adding this compiler flag means we should not be using &lt;code&gt;assert&lt;/code&gt; statement, which &lt;code&gt;SymEngine&lt;/code&gt; does in &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; and test files too. These had to be sorted out if &lt;code&gt;Piranha&lt;/code&gt; were to be a hard dependency of &lt;code&gt;SymEngine&lt;/code&gt;&amp;#39;s polynomial module. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Hence, the issue of moving the tests suite from &lt;code&gt;assert&lt;/code&gt;s to a well-developed test framework came up again, &lt;a href=&quot;https://github.com/sympy/symengine/issues/282&quot;&gt;#282&lt;/a&gt;. We explored a couple, but &lt;code&gt;Catch&lt;/code&gt; still seemed to be the best option. &lt;br/&gt;
+&lt;code&gt;Catch&lt;/code&gt; was implemented, which is a benefit to &lt;code&gt;SymEngine&lt;/code&gt; in the long run too. &lt;br/&gt;
+As for the &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt;, we decided to change our macro to raise an exception or just abort the program. &lt;br/&gt;
+&lt;a href=&quot;https://github.com/philsquared/Catch&quot;&gt;Catch&lt;/a&gt; is a very good tool. We thank &lt;a href=&quot;https://github.com/philsquared&quot;&gt;Phil Nash&lt;/a&gt; and all the contributors for making it.&lt;/p&gt;
+
+&lt;p&gt;Next up, wrapping into &lt;code&gt;Polynomial&lt;/code&gt;. &lt;br/&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;We need some functionality to convert a &lt;code&gt;SymEngine&lt;/code&gt; expression(&lt;code&gt;Basic&lt;/code&gt;) into one of &lt;code&gt;hashset&lt;/code&gt; representations directly. Now I convert &lt;code&gt;basic&lt;/code&gt; to &lt;code&gt;poly&lt;/code&gt; and then to &lt;code&gt;hashset&lt;/code&gt; as just getting the speed right was the issue. &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Domains of coefficients need to be thought of. &lt;code&gt;SymPy&lt;/code&gt; and &lt;code&gt;Sage&lt;/code&gt; will be need to looked into and their APIs need to be studied. We need &lt;code&gt;ZZ&lt;/code&gt;, &lt;code&gt;QQ&lt;/code&gt; and &lt;code&gt;EX&lt;/code&gt;, the work for &lt;code&gt;EX&lt;/code&gt; has been done by &lt;a href=&quot;https://github.com/bluescarni&quot;&gt;Francesco Biscani&lt;/a&gt;, this will be patched for the latest master and commited in his name.
+There could also be an automatic mode, which figures out the fastest representation for the given expression, at the price of a little slower conversion, as it needs to traverse the expression to figure out what representation fits. &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;tuple&lt;/code&gt; to &lt;code&gt;packed&lt;/code&gt; conversion when exponents don&amp;#39;t fit. Also &lt;code&gt;encode&lt;/code&gt; supports signed ints which is a boon to us, as we don&amp;#39;t have to worry about negative exponents. For &lt;code&gt;rational&lt;/code&gt; exponents we use tuple. &lt;br/&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I still haven&amp;#39;t figured out the reason for slow down of &lt;code&gt;expand2&lt;/code&gt; and &lt;code&gt;expand2b&lt;/code&gt; in my &lt;code&gt;packint&lt;/code&gt; branch. I have been suggested to use &lt;code&gt;git bisect&lt;/code&gt;. Will do next week.&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;expand2d&lt;/code&gt; results:&lt;/p&gt;
+
+&lt;p&gt;Result of 10 execution:  &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt;&lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;15ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;15ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;15ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;14ms&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Maximum: 15ms &lt;br/&gt;
+Minimum: 14ms &lt;br/&gt;
+Average: 14.3ms &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, the &lt;code&gt;evaluate_sparsity()&lt;/code&gt; gave the following result for the &lt;code&gt;hash_set&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;0,11488&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;1,3605&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;2,1206&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;3,85&lt;/code&gt; &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Piranha&lt;/code&gt; has the following results &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Average: 13.421ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Maximum: 13.875ms&lt;/code&gt; &lt;br/&gt;
+&lt;code&gt;Minimum: 12.964ms&lt;/code&gt;  &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;A more detailed report of benchmarks and comparisons can be found &lt;a href=&quot;https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A minor PR where MPFR was added as a Piranha dependency, &lt;a href=&quot;https://github.com/sympy/symengine/pull/472&quot;&gt;472&lt;/a&gt; was merged. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Another PR in which the tests where moved to &lt;code&gt;Catch&lt;/code&gt; is good to play with and merge, minor build nits remaining, &lt;a href=&quot;https://github.com/sympy/symengine/pull/484&quot;&gt;484&lt;/a&gt;. &lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 5&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Figure out the reason for &lt;a href=&quot;https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine#why-is-there-a-slowdown-in-packint-branch-for-expand-and-expand2b&quot;&gt;slow down&lt;/a&gt; in benchmarks, fix that. &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Change the &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; &lt;a href=&quot;https://github.com/sympy/symengine/blob/bbe3c9baf653d18d37e3bfcd424e0781786098c1/symengine/symengine_assert.h#L7&quot;&gt;macro&lt;/a&gt; to raise an &lt;a href=&quot;https://github.com/sympy/symengine/blob/bbe3c9baf653d18d37e3bfcd424e0781786098c1/symengine/symengine_assert.h#L13&quot;&gt;exception&lt;/a&gt;. &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Add the &lt;code&gt;DNDEBUG&lt;/code&gt; flag for with &lt;code&gt;Piranha&lt;/code&gt; builds, as now &lt;code&gt;SymEngine&lt;/code&gt; doesn&amp;#39;t use &lt;code&gt;assert&lt;/code&gt;, close issue &lt;a href=&quot;https://github.com/sympy/symengine/issues/482&quot;&gt;#482&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Port &lt;a href=&quot;https://github.com/bluescarni&quot;&gt;&lt;code&gt;@bluescarni&lt;/code&gt;&lt;/a&gt;&amp;#39;s &lt;a href=&quot;https://github.com/sympy/symengine/compare/master...bluescarni:expression&quot;&gt;work&lt;/a&gt; of &lt;code&gt;EX&lt;/code&gt; to SymEngine. &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Wrap the lower-level into &lt;code&gt;Polynomial&lt;/code&gt; for signed integer exponents in &lt;code&gt;ZZ&lt;/code&gt; domain with functionality atleast that of &lt;code&gt;UnivariatePolynomial&lt;/code&gt;. &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That&amp;#39;s all this week. &lt;br/&gt;
+&lt;strong&gt;Sbohem&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 3 and 4</title>
