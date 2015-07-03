@@ -4,13 +4,74 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-06-26T23:03:38+00:00</updated>
+ <updated>2015-07-03T22:16:27+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 6</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-6"/>
+   <updated>2015-07-03T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-6</id>
+   <content type="html">&lt;p&gt;Hello, received a mail few minutes into typing this, passed the midterm review successfully :) &lt;br/&gt;
+Just left me wondering how do these guys process so many evaluations so quickly.&lt;br&gt;
+I do have to confirm with &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt; about this. &lt;br/&gt;
+Anyways, the project goes on and here is my this week&amp;#39;s summary. &lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;SymEngine&lt;/code&gt; successfully moved to using &lt;code&gt;Catch&lt;/code&gt; as a testing framework. &lt;/p&gt;
+
+&lt;p&gt;The travis builds for clang were breaking, this let me to play around with travis and clang builds to fix this issue. The linux clang build used to break because we used to mix-up and link libraries like &lt;code&gt;GMP&lt;/code&gt; compiled with different standard libraries.  &lt;br/&gt;
+Thanks to &lt;a href=&quot;https://github.com/isuruf&quot;&gt;Isuru&lt;/a&gt; for lending a helping hand and fixing it in his PR.&lt;/p&gt;
+
+&lt;p&gt;Next task to make &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; not use standard &lt;code&gt;assert()&lt;/code&gt;, hence I wrote my custom assert which simulates the internal &lt;code&gt;assert&lt;/code&gt;.  &lt;br/&gt;
+Now we could add the &lt;code&gt;DNDEBUG&lt;/code&gt; as a release flag when &lt;code&gt;Piranha&lt;/code&gt; is a dependence, this was also done.&lt;/p&gt;
+
+&lt;p&gt;Started work on &lt;code&gt;Expression&lt;/code&gt; wrapper, PR that starts off from Francesco&amp;#39;s work sent in.&lt;/p&gt;
+
+&lt;p&gt;Investigated the slow down in benchmarks that I have been reporting in the last couple of posts. Using &lt;code&gt;git commit&lt;/code&gt;(amazing tool, good to see binary search in action!), the first bad &lt;a href=&quot;https://github.com/Sumith1896/csympy/commit/35f384a484315efbb900ec4ec0b0eb97e791c193&quot;&gt;commit&lt;/a&gt; was tracked. We realized that the inclusion of &lt;code&gt;piranha.hpp&lt;/code&gt; header caused the slowdown and was resolved by using &lt;code&gt;mp_integer.hpp&lt;/code&gt;, just the requirement header.  &lt;br/&gt;
+With immense help of &lt;a href=&quot;https://github.com/bluescarni&quot;&gt;Franceso&lt;/a&gt;, the problem was cornered to this: &lt;br/&gt;
+* Inclusion of &lt;code&gt;thread_pool&lt;/code&gt; leads to the slowdown, a global variable that it declares to be specific. &lt;br/&gt;
+* In general a multi-threaded application may result in some compiler optimizations going off, hence slowdown. &lt;br/&gt;
+* Since this benchmark is memory allocation intensive, another speculation is that compiler allocates memory differently. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;This SO &lt;a href=&quot;http://stackoverflow.com/questions/31212943/performance-cost-of-threading-constructs-missed-optimisations-and-memory-alloca&quot;&gt;question&lt;/a&gt; asked by &lt;a href=&quot;https://github.com/bluescarni&quot;&gt;@bluescarni&lt;/a&gt; should lead to very interesting developments. &lt;/p&gt;
+
+&lt;p&gt;We have to investigate this problem and get it sorted. Not only because we depend on &lt;code&gt;Piranha&lt;/code&gt;, we might also have multi-threading in &lt;code&gt;SymEngine&lt;/code&gt; later too.&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;No benchmarking was done this week. &lt;br/&gt;
+Here is my PR reports. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;WIP&lt;/strong&gt; &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/500&quot;&gt;#500&lt;/a&gt; - Expression Wrapper &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged&lt;/strong&gt; &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/493&quot;&gt;#493&lt;/a&gt; - The PR with &lt;code&gt;Catch&lt;/code&gt; got merged. &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/498&quot;&gt;#498&lt;/a&gt; - Made &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; use custom assert instead of &lt;code&gt;assert()&lt;/code&gt; and &lt;code&gt;DNDEBUG&lt;/code&gt; as a release flag with &lt;code&gt;PIRANHA&lt;/code&gt;. &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/502&quot;&gt;#502&lt;/a&gt; - Make &lt;code&gt;poly_mul&lt;/code&gt; used &lt;code&gt;mpz_addmul&lt;/code&gt; (FMA), nice speedup of &lt;code&gt;expand2b&lt;/code&gt;.
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/496&quot;&gt;#496&lt;/a&gt; - En route to fixing &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; led to a minor fix in one of the assert statements. &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/491&quot;&gt;#491&lt;/a&gt; - Minor fix in compiler choice documentation.&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 6&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Get the &lt;code&gt;Expression&lt;/code&gt; class merged. &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Investigate and fix the slow-downs. &lt;br/&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The rest of tasks can be finalized in later discussion with &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s all this week. &lt;br/&gt;
+&lt;strong&gt;Ciao&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 5</title>
