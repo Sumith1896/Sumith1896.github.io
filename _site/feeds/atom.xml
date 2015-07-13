@@ -4,7 +4,7 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-07-03T22:16:27+00:00</updated>
+ <updated>2015-07-13T17:12:06+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
@@ -13,13 +13,54 @@
 
  
  <entry>
+   <title>GSoC Progress - Week 7</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-7"/>
+   <updated>2015-07-13T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-7</id>
+   <content type="html">&lt;p&gt;Hello. Sorry for the really late post. As I was moving from home to Mumbai back and also part of the grading team of International Physics Olympiad(IPhO), I could not contribute as much as I had thought I could. Here is what I have for this week.&lt;/p&gt;
+
+&lt;h3&gt;Progress&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Expression&lt;/code&gt; class was built upon the initial works of Francesco. I made a SymEngine patch with his as an initial commit. We now have a top-level value class.&lt;/p&gt;
+
+&lt;p&gt;The slowdowns finally got tackled. It was Piranha that needed amendment. The slowdown, as discussed previously, was due to the class &lt;code&gt;thread_pool&lt;/code&gt;. This was resolved was templatizing &lt;code&gt;thread_pool&lt;/code&gt; i.e. replace &lt;code&gt;class thread_pool: private detail::thread_pool_base&amp;lt;&amp;gt;&lt;/code&gt; with &lt;code&gt;template &amp;lt;typename = void&amp;gt; class thread_pool_: private detail::thread_pool_base&amp;lt;&amp;gt;&lt;/code&gt;. This basically saw to it that inclusion of individual headers. Including single &lt;code&gt;piranha.hpp&lt;/code&gt; still had this problem. The problem was &lt;code&gt;piranha.hpp&lt;/code&gt; includes &lt;code&gt;settings.hpp&lt;/code&gt;, which in turn defines a non-template function called &lt;code&gt;set_n_threads()&lt;/code&gt; which internally invokes the thread pool. This was resolved by a similar fix, the &lt;code&gt;setting&lt;/code&gt; class to &lt;code&gt;&amp;lt;typename = void&amp;gt; class settings_&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Many things were reported until now, hence &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt; suggested a documentation of all the decisions taken. The wiki page, &lt;a href=&quot;https://github.com/sympy/symengine/wiki/En-route-to-Polynomial&quot;&gt;En route to Polynomial&lt;/a&gt; was hence made.&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;WIP&lt;/strong&gt; &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/511&quot;&gt;#511&lt;/a&gt; - Polynomial Wrapper &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged&lt;/strong&gt; &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/512&quot;&gt;#512&lt;/a&gt; - Add Francesco to AUTHORS &lt;br/&gt;
+* &lt;a href=&quot;https://github.com/sympy/symengine/pull/500&quot;&gt;#500&lt;/a&gt; - Expression wrapper. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Documentation&lt;/strong&gt; &lt;br/&gt;
+&lt;a href=&quot;https://github.com/sympy/symengine/wiki/En-route-to-Polynomial&quot;&gt;En route to Polynomial&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Targets for Week 8&lt;/h3&gt;
+
+&lt;p&gt;Get the &lt;code&gt;Polynomial&lt;/code&gt; wrapper merged.&lt;/p&gt;
+
+&lt;p&gt;Points to be noted: &lt;br/&gt;
+* Use standard library alternates to Piranha constructs so that we can have something even when there is no Piranha as dependency. &lt;br/&gt;
+* Basic class in, so that &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt; can start some work in SymEngine. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;I am thankful to &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt; and the &lt;code&gt;SymEngine&lt;/code&gt; team for bearing with my delays. I hope I can compensate in the coming week. &lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s all this week. &lt;br/&gt;
+&lt;strong&gt;Adéu&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>GSoC Progress - Week 6</title>
    <link href="http://sumith1896.github.io//GSoC-Progress-Week-6"/>
    <updated>2015-07-03T00:00:00+00:00</updated>
    <id>http://sumith1896.github.io//GSoC-Progress-Week-6</id>
    <content type="html">&lt;p&gt;Hello, received a mail few minutes into typing this, passed the midterm review successfully :) &lt;br/&gt;
-Just left me wondering how do these guys process so many evaluations so quickly.&lt;br&gt;
-I do have to confirm with &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt; about this. &lt;br/&gt;
+Just left me wondering how do these guys process so many evaluations so quickly. I do have to confirm with &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondřej&lt;/a&gt; about this. &lt;br/&gt;
 Anyways, the project goes on and here is my this week&amp;#39;s summary. &lt;br/&gt;&lt;/p&gt;
 
 &lt;h3&gt;Progress&lt;/h3&gt;
@@ -59,7 +100,7 @@ Here is my PR reports. &lt;br/&gt;&lt;/p&gt;
 * &lt;a href=&quot;https://github.com/sympy/symengine/pull/496&quot;&gt;#496&lt;/a&gt; - En route to fixing &lt;code&gt;SYMENGINE_ASSERT&lt;/code&gt; led to a minor fix in one of the assert statements. &lt;br/&gt;
 * &lt;a href=&quot;https://github.com/sympy/symengine/pull/491&quot;&gt;#491&lt;/a&gt; - Minor fix in compiler choice documentation.&lt;/p&gt;
 
-&lt;h3&gt;Targets for Week 6&lt;/h3&gt;
+&lt;h3&gt;Targets for Week 7&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Get the &lt;code&gt;Expression&lt;/code&gt; class merged. &lt;br/&gt;&lt;/li&gt;

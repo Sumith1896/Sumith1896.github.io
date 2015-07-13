@@ -9,8 +9,7 @@ permalink: /GSoC-Progress-Week-6
 ---	
 
 Hello, received a mail few minutes into typing this, passed the midterm review successfully :) <br/>
-Just left me wondering how do these guys process so many evaluations so quickly.	
-I do have to confirm with [Ondřej](https://github.com/certik) about this. <br/>
+Just left me wondering how do these guys process so many evaluations so quickly. I do have to confirm with [Ondřej](https://github.com/certik) about this. <br/>
 Anyways, the project goes on and here is my this week's summary. <br/>
 
 ### Progress
@@ -50,7 +49,7 @@ Here is my PR reports. <br/>
 * [#496](https://github.com/sympy/symengine/pull/496) - En route to fixing `SYMENGINE_ASSERT` led to a minor fix in one of the assert statements. <br/>
 * [#491](https://github.com/sympy/symengine/pull/491) - Minor fix in compiler choice documentation.
 
-### Targets for Week 6
+### Targets for Week 7
 
 * Get the `Expression` class merged. <br/>
 * Investigate and fix the slow-downs. <br/>

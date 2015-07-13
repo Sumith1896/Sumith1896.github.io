@@ -11,7 +11,7 @@
 
   <title>
     
-      GSoC Progress - Week 2 &middot; Sumith
+      GSoC Progress - Week 7 &middot; Sumith
     
   </title>
 
@@ -137,10 +137,10 @@
         <div class="post">
   <span class="post-date">
     <a href="/timeline" class="timeline">
-      12 Jun 2015
+      13 Jul 2015
     </a>
   </span>
-  <h1 class="post-title">GSoC Progress - Week 2</h1>
+  <h1 class="post-title">GSoC Progress - Week 7</h1>
   <span class="post-tag">
       
         
@@ -168,47 +168,40 @@
 
   <hr>
 
-  <p>Hello, this post contains the second report of my GSoC progress. At one point, I had changed the deadline from Sundays to Fridays, but I seem to be running a week late on the post names. Will be corrected next week.</p>
+  <p>Hello. Sorry for the really late post. As I was moving from home to Mumbai back and also part of the grading team of International Physics Olympiad(IPhO), I could not contribute as much as I had thought I could. Here is what I have for this week.</p>
 
 <h3>Progress</h3>
 
-<p>We decided that instead of coding up the <code>Polynomial</code> upfront, we try to speed up the expand2b benchmark i.e. try to nail speed at a lower level, then think of the design decisions and wrap it up into <code>Polynomial</code> class. <br/>
-The plan was this: <br/>
-* Add support for <code>Piranha</code> in <code>SymEngine</code> CMake <br/>
-* Implement packing of exponents and a check function to ensure it fits, use this to fasten expand2b <br/>
-* Use Piranha&#39;s integer and benchmark expand2b again <br/></p>
+<p>The <code>Expression</code> class was built upon the initial works of Francesco. I made a SymEngine patch with his as an initial commit. We now have a top-level value class.</p>
 
-<p>The faster hashtable was kept for later.</p>
+<p>The slowdowns finally got tackled. It was Piranha that needed amendment. The slowdown, as discussed previously, was due to the class <code>thread_pool</code>. This was resolved was templatizing <code>thread_pool</code> i.e. replace <code>class thread_pool: private detail::thread_pool_base&lt;&gt;</code> with <code>template &lt;typename = void&gt; class thread_pool_: private detail::thread_pool_base&lt;&gt;</code>. This basically saw to it that inclusion of individual headers. Including single <code>piranha.hpp</code> still had this problem. The problem was <code>piranha.hpp</code> includes <code>settings.hpp</code>, which in turn defines a non-template function called <code>set_n_threads()</code> which internally invokes the thread pool. This was resolved by a similar fix, the <code>setting</code> class to <code>&lt;typename = void&gt; class settings_</code>.</p>
+
+<p>Many things were reported until now, hence <a href="https://github.com/certik">Ondřej</a> suggested a documentation of all the decisions taken. The wiki page, <a href="https://github.com/sympy/symengine/wiki/En-route-to-Polynomial">En route to Polynomial</a> was hence made.</p>
 
 <h3>Report</h3>
 
-<p><a href="https://github.com/sympy/symengine/pull/464">PR 464</a> was merged. <br/>
-Implements support for <code>Piranha</code> in CMake along with it&#39;s dependencies <code>Boost</code> and <code>PTHREAD</code>. <br/>
-The above two dependencies come as separate CMake option as well. We feel that the <code>Boost</code> support can be improved, that can be done at a later stage.</p>
+<p><strong>WIP</strong> <br/>
+* <a href="https://github.com/sympy/symengine/pull/511">#511</a> - Polynomial Wrapper <br/></p>
 
-<p><a href="https://github.com/sympy/symengine/pull/470">PR 470</a> Speeding up the benchmark. <br/>
-* The pack and check function were implemented <br/>
-* Used <code>std::valarray</code> instead <code>std::vector</code>(inspired by <a href="https://github.com/sympy/symengine/issues/111">issue 111</a>) but the benchmark slowed down, hence change was not adopted <br/>
-* Implemented functions <code>poly2packed()</code> and <code>packed2poly()</code>, for converting between the two representations <br/>
-* Implemented function <code>poly_mul2()</code> for multiplying the packed polynomials <br/>
-* Re-wrote <code>expand2b</code> to use packed, now <code>expand2c</code> <br/></p>
+<p><strong>Merged</strong> <br/>
+* <a href="https://github.com/sympy/symengine/pull/512">#512</a> - Add Francesco to AUTHORS <br/>
+* <a href="https://github.com/sympy/symengine/pull/500">#500</a> - Expression wrapper. <br/></p>
 
-<p>Very nice speedup was obtained from using the packed structure, a more detailed report can be found <a href="https://github.com/sympy/sympy/wiki/Benchmark-results-expand2b,-SymEngine">here</a>. <br/>
-But we are still far from <code>Piranha</code> and we have lots to do :)</p>
+<p><strong>Documentation</strong> <br/>
+<a href="https://github.com/sympy/symengine/wiki/En-route-to-Polynomial">En route to Polynomial</a></p>
 
-<p>Most of the week&#39;s time went to learning to link libraries and writing cmake files for my own projects so that I could figure what was happening in <a href="https://github.com/sympy/symengine/pull/464">PR 464</a>. Now I feel it was very easy a task and shouldn&#39;t have consumed the time it did.</p>
+<h3>Targets for Week 8</h3>
 
-<h3>Targets for Week 3</h3>
+<p>Get the <code>Polynomial</code> wrapper merged.</p>
 
-<p>My aim is to get all the code and optimization, possible at this level, done by next week, so that we can start wrapping in the coming weeks. <br/>
-* Use <code>piranha::integer</code> for coefficients, benchmark <br/>
-* Implement switching between packed structure and tuple depending on whether exponents fit or not <br/></p>
+<p>Points to be noted: <br/>
+* Use standard library alternates to Piranha constructs so that we can have something even when there is no Piranha as dependency. <br/>
+* Basic class in, so that <a href="https://github.com/shivamvats">Shivam</a> can start some work in SymEngine. <br/></p>
 
-<p>If time permits, I want to implement a system to use <code>int</code> for small cofficients and switch to <code>mpz_class</code> when large.<br/>
-We have lots to do to hit the speed that we expect.<br/></p>
+<p>I am thankful to <a href="https://github.com/certik">Ondřej</a> and the <code>SymEngine</code> team for bearing with my delays. I hope I can compensate in the coming week. </p>
 
-<p>That&#39;s all folks.<br/>
-<strong>Au Revoir</strong></p>
+<p>That&#39;s all this week. <br/>
+<strong>Adéu</strong></p>
 
 </div>
 
@@ -226,15 +219,6 @@ We have lots to do to hit the speed that we expect.<br/></p>
     
       <li>
         <h3>
-          <a href="/GSoC-Progress-Week-7">
-            GSoC Progress - Week 7
-            <small>13 Jul 2015</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
           <a href="/GSoC-Progress-Week-6">
             GSoC Progress - Week 6
             <small>03 Jul 2015</small>
@@ -247,6 +231,15 @@ We have lots to do to hit the speed that we expect.<br/></p>
           <a href="/GSoC-Progress-Week-5">
             GSoC Progress - Week 5
             <small>26 Jun 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-3-and-4">
+            GSoC Progress - Week 3 and 4
+            <small>20 Jun 2015</small>
           </a>
         </h3>
       </li>
