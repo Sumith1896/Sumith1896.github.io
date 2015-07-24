@@ -4,13 +4,44 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-07-17T23:15:58+00:00</updated>
+ <updated>2015-07-24T21:24:49+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC Progress - Week 9</title>
+   <link href="http://sumith1896.github.io//GSoC-Progress-Week-9"/>
+   <updated>2015-07-17T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Progress-Week-9</id>
+   <content type="html">&lt;p&gt;Hello all. Last week has been rough, here&amp;#39;s what I could do.&lt;/p&gt;
+
+&lt;h3&gt;Report&lt;/h3&gt;
+
+&lt;p&gt;The printing now works, hence I could test them. Due to that we could even test both the constructors, one from &lt;code&gt;hash_set&lt;/code&gt; and other from &lt;code&gt;Basic&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The Polynomial wrappers PR, we need to get in quick, our highest priority.&lt;/p&gt;
+
+&lt;p&gt;We need to make the methods more robust, we plan to get it in this weekend. &lt;br/&gt;
+Once this is in, &lt;a href=&quot;https://github.com/shivamvats&quot;&gt;Shivam&lt;/a&gt; can start writing function expansions.&lt;/p&gt;
+
+&lt;p&gt;I have also couple of other tasks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;std::unordered_set&lt;/code&gt; so that we can have something even when there is no Piranha as dependency. &lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;Replace &lt;code&gt;mpz_class&lt;/code&gt; with &lt;code&gt;piranha::integer&lt;/code&gt; throughout SymEngine and checkout benchmarks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I intend to get Polynomial in this weekend because I get free on weekends :) &lt;br/&gt;
+As there are only 3-4 weeks remaining, I need to buck up.&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s all I have &lt;br/&gt;
+&lt;strong&gt;Bidāẏa&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 8</title>
