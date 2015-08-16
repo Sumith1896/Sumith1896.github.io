@@ -11,7 +11,7 @@
 
   <title>
     
-      GSoC Progress - Week 7 &middot; Sumith
+      GSoC Progress - Week 10 and 11 &middot; Sumith
     
   </title>
 
@@ -149,10 +149,10 @@
         <div class="post">
   <span class="post-date">
     <a href="/timeline" class="timeline">
-      13 Jul 2015
+      16 Aug 2015
     </a>
   </span>
-  <h1 class="post-title">GSoC Progress - Week 7</h1>
+  <h1 class="post-title">GSoC Progress - Week 10 and 11</h1>
   <span class="post-tag">
       
         
@@ -180,40 +180,30 @@
 
   <hr>
 
-  <p>Hello. Sorry for the really late post. As I was moving from home to Mumbai back and also part of the grading team of International Physics Olympiad(IPhO), I could not contribute as much as I had thought I could. Here is what I have for this week.</p>
-
-<h3>Progress</h3>
-
-<p>The <code>Expression</code> class was built upon the initial works of Francesco. I made a SymEngine patch with his as an initial commit. We now have a top-level value class.</p>
-
-<p>The slowdowns finally got tackled. It was Piranha that needed amendment. The slowdown, as discussed previously, was due to the class <code>thread_pool</code>. This was resolved was templatizing <code>thread_pool</code> i.e. replace <code>class thread_pool: private detail::thread_pool_base&lt;&gt;</code> with <code>template &lt;typename = void&gt; class thread_pool_: private detail::thread_pool_base&lt;&gt;</code>. This basically saw to it that inclusion of individual headers. Including single <code>piranha.hpp</code> still had this problem. The problem was <code>piranha.hpp</code> includes <code>settings.hpp</code>, which in turn defines a non-template function called <code>set_n_threads()</code> which internally invokes the thread pool. This was resolved by a similar fix, the <code>setting</code> class to <code>&lt;typename = void&gt; class settings_</code>.</p>
-
-<p>Many things were reported until now, hence <a href="https://github.com/certik">Ondřej</a> suggested a documentation of all the decisions taken. The wiki page, <a href="https://github.com/sympy/symengine/wiki/En-route-to-Polynomial">En route to Polynomial</a> was hence made.</p>
+  <p>Hello all. Here are the most recent developments in the Polynomial wrappers.</p>
 
 <h3>Report</h3>
 
-<p><strong>WIP</strong> <br/>
-* <a href="https://github.com/sympy/symengine/pull/511">#511</a> - Polynomial Wrapper <br/></p>
+<ul>
+<li><p>The Polynomial wrappers was using <code>piranha::hash_set</code> as the <code>Polynomial</code> wrappers, hence when there was no <code>Piranha</code> as a dependence, the <code>Polynomial</code> wouldn&#39;t compile. The fix to this was to use <code>std::unordered_set</code> with <code>-DWITH_PIRANHA=no</code> so that there would be atleast a slow version available.</p></li>
+<li><p>Another issue was Travis testing of <code>Polynomial</code>. Since we depend on <code>Piranha</code>, we had to setup Travis testing with <code>Piranha</code> included and <code>Polynomial</code> tests run. This was done in the merged PR <a href="https://github.com/sympy/symengine/pull/585">585</a>.</p></li>
+<li><p>Before we get the <code>Polynomial</code> merged we have to add <code>mul_poly</code>, improve printing, and test exhaustively. The <code>mul_poly</code> is ready <a href="https://github.com/shivamvats/symengine/pull/4">here</a>, will be merged once more tests are prepared.</p></li>
+</ul>
 
-<p><strong>Merged</strong> <br/>
-* <a href="https://github.com/sympy/symengine/pull/512">#512</a> - Add Francesco to AUTHORS <br/>
-* <a href="https://github.com/sympy/symengine/pull/500">#500</a> - Expression wrapper. <br/></p>
+<p>For <code>mul_poly</code>, previously we never checked the variables corresponding to the <code>hash_set</code>s, which implies you could only multiply a <code>n</code> variable polynomial with another <code>n</code> variable polynomial with the variable symbols same in both. When the variables of two hash_sets are different, a work around would be needed. This would result in slow down if done directly.</p>
 
-<p><strong>Documentation</strong> <br/>
-<a href="https://github.com/sympy/symengine/wiki/En-route-to-Polynomial">En route to Polynomial</a></p>
+<p>As suggested by <a href="https://github.com/certik">Ondřej</a>, <code>mul_poly</code> now calls two functions <code>_normalize_mul</code> and <code>_mul_hashest</code>. Here <code>_noramlize_mul</code> sees to it that the <code>hash_set</code>s satisfy the afore mentioned criteria and then <code>_mul_hashset</code> operates  <br/>
+For example, say <code>mul_poly</code> is called,
+then <code>_normalize_mul</code> converts <code>{1, 2, 3}</code> of <code>x, y, z</code> and <code>{4, 5, 6}</code> of <code>p, q, r</code> to <code>{1, 2, 3, 0, 0, 0}</code> and <code>{0, 0, 0, 4, 5, 6}</code>
+and <code>_mul_hashset</code> multiplies the two <code>hash_set</code>. The speed of benchmarks determined by <code>_mul_hashset</code>.</p>
 
-<h3>Targets for Week 8</h3>
+<ul>
+<li><p>The printing needs improvement. As of now the polynomial <code>2*x + 2*y</code> gets printed as <code>2*y**1*x**0 + 2*y**0*x**1</code>.</p></li>
+<li><p>Not all that was planned could be completed this summers, mostly because of my hectic schedule after the vacations ended and institure began. I am planning to work after the program ends too, when the workload eases. As the final deadline week of GSoC is coming up, I need to ensure at least the PRs on hold gets merged.I am planning to continue after the period ends so as </p></li>
+</ul>
 
-<p>Get the <code>Polynomial</code> wrapper merged.</p>
-
-<p>Points to be noted: <br/>
-* Use standard library alternates to Piranha constructs so that we can have something even when there is no Piranha as dependency. <br/>
-* Basic class in, so that <a href="https://github.com/shivamvats">Shivam</a> can start some work in SymEngine. <br/></p>
-
-<p>I am thankful to <a href="https://github.com/certik">Ondřej</a> and the <code>SymEngine</code> team for bearing with my delays. I hope I can compensate in the coming week. </p>
-
-<p>That&#39;s all this week. <br/>
-<strong>Adéu</strong></p>
+<p>That&#39;s all I have <br/>
+<strong>See ya</strong></p>
 
 </div>
 
@@ -231,15 +221,6 @@
     
       <li>
         <h3>
-          <a href="/GSoC-Progress-Week-10-&-11">
-            GSoC Progress - Week 10 and 11
-            <small>16 Aug 2015</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
           <a href="/GSoC-Progress-Week-9">
             GSoC Progress - Week 9
             <small>24 Jul 2015</small>
@@ -252,6 +233,15 @@
           <a href="/GSoC-Progress-Week-8">
             GSoC Progress - Week 8
             <small>17 Jul 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-7">
+            GSoC Progress - Week 7
+            <small>13 Jul 2015</small>
           </a>
         </h3>
       </li>
