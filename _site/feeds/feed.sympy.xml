@@ -4,13 +4,44 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-08-16T16:33:15+00:00</updated>
+ <updated>2015-08-22T00:02:27+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
    <email>sumith1896@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GSoC - Wrapping Up</title>
+   <link href="http://sumith1896.github.io//GSoC-Wrapping-Up"/>
+   <updated>2015-08-16T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//GSoC-Wrapping-Up</id>
+   <content type="html">&lt;p&gt;From not knowing anything considerable in programming and open source to reaching this level, has been a wonderful ride. Google Summer of Code has been full of ups and downs but none the less exhilarating. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Didn&amp;#39;t even know at the time of my &lt;a href=&quot;https://github.com/sympy/symengine/commit/f5243c034953efa228c708e97668a932dc216e37&quot;&gt;first patch&lt;/a&gt; that I would be so closely associated to SymEngine and the team members just a few months down the line.&lt;/p&gt;
+
+&lt;p&gt;After a couple of bug fixes, my first major contribution came in as the &lt;a href=&quot;https://github.com/sympy/symengine/blob/master/symengine/polynomial.cpp&quot;&gt;&lt;code&gt;UnivariatePolynomial&lt;/code&gt;&lt;/a&gt; class. The biggest challenge here was implementing multiplication using Kronecker&amp;#39;s trick. This was my first experience of implementing an algorithm from a &lt;a href=&quot;http://www.cs.berkeley.edu/%7Efateman/papers/polysbyGMP.pdf&quot;&gt;paper&lt;/a&gt;. The &lt;code&gt;UnivariatePolynomial&lt;/code&gt; class shaped up really well, there are minor improvements that can be made and some optimizations that could be done. But standalone, it is a fully functional class.&lt;/p&gt;
+
+&lt;p&gt;Once this was done, my next aim was to optimize multiplication to reach &lt;code&gt;Piranha&lt;/code&gt;&amp;#39;s speed. This was a very enriching period and the discussions with the team members and &lt;a href=&quot;https://github.com/bluescarni&quot;&gt;Francesco&lt;/a&gt; was a great learning experience. En route, I also got a chance to explore &lt;code&gt;Piranha&lt;/code&gt; under the hood and trouble Francesco for reasoning why certain things were the way they. End of this, we were able to hit &lt;code&gt;Piranha&lt;/code&gt;&amp;#39;s speed. I remember I was the happiest I had been in days.&lt;/p&gt;
+
+&lt;p&gt;Once we hit the lower level speed, we decided to hard-depend on &lt;code&gt;Piranha&lt;/code&gt; for &lt;code&gt;Polynomial&lt;/code&gt;. This meant adding &lt;code&gt;Piranha&lt;/code&gt; as SymEngine dependence. Here I had to learnt how to write and wrote &lt;code&gt;CMake&lt;/code&gt; files as well as setting up Piranha testing in &lt;code&gt;Travis&lt;/code&gt; meant writing &lt;code&gt;shell&lt;/code&gt; and &lt;code&gt;CI&lt;/code&gt; scripts. We faced a problem here, resolution to which meant implementing &lt;code&gt;Catch&lt;/code&gt; as a testing framework for &lt;code&gt;SymEngine&lt;/code&gt;. &lt;code&gt;Catch&lt;/code&gt; is an awesome library and community is very pleasant. Implementing this was a fun work too.
+Also the high level value class &lt;code&gt;Expression&lt;/code&gt; was implemented in &lt;code&gt;SymEngine&lt;/code&gt;, mostly taken from Francesco&amp;#39;s work.&lt;/p&gt;
+
+&lt;p&gt;I then started writing the &lt;code&gt;Polynomial&lt;/code&gt; class, most of the work is done here(&lt;a href=&quot;https://github.com/sympy/symengine/pull/597&quot;&gt;597&lt;/a&gt;). But the design is not very well thought of. I say this because once ready this can only support integer(ZZ) domain. But we will also need rational(QQ) and expression(EX). The code will be of much use but we have been discussing a much cleaner implementation with &lt;code&gt;Ring&lt;/code&gt; class. Most of the progress and the new design decisions are being documented &lt;a href=&quot;https://github.com/sympy/symengine/wiki/En-route-to-Polynomial&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Second half has been really rough, with the university running. Ondrej has been really patient with me, I thank him for that. The bond that I made with him through mails, technical and non technical, has really grown strong. He has allowed me to continue the work the &lt;code&gt;Polynomial&lt;/code&gt; and implement more details and algorithms in future. I am looking forward to that as long term association is an amazing thing and I am proud to be responsible for the &lt;strong&gt;&lt;code&gt;Polynomial module in SymEngine&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;I am indebted to my mentor &lt;a href=&quot;https://github.com/certik&quot;&gt;Ondrej Certik&lt;/a&gt; and all the &lt;a href=&quot;https://gitter.im/sympy/symengine&quot;&gt;SymEngine&lt;/a&gt; and &lt;a href=&quot;https://gitter.im/sympy/sympy&quot;&gt;SymPy&lt;/a&gt; developers who were ever ready to help and answer my silliest of questions. It’s an amazing community and they are really very helpful and always appreciated even the smallest of my contributions. The best part of SymEngine is you know contributors one to one and it is like a huge family of learners. I am looking forward to meeting the team (atleast SymPy India in near future).&lt;/p&gt;
+
+&lt;p&gt;Google Summer of Code has been one exhilarating journey. I don&amp;#39;t know if I was a good programmer then or a good programmer now but I can say that I am a better programmer now.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This is just the beginning of the ride, GSoC a stepping stone.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There will be blog posts coming here, so stay tuned. Till then, &lt;br/&gt;
+&lt;strong&gt;Bye&lt;/strong&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GSoC Progress - Week 10 and 11</title>

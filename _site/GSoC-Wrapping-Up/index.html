@@ -11,7 +11,7 @@
 
   <title>
     
-      Gearing up for GSoC &middot; Sumith
+      GSoC - Wrapping Up &middot; Sumith
     
   </title>
 
@@ -153,10 +153,10 @@
         <div class="post">
   <span class="post-date">
     <a href="/timeline" class="timeline">
-      25 May 2015
+      16 Aug 2015
     </a>
   </span>
-  <h1 class="post-title">Gearing up for GSoC</h1>
+  <h1 class="post-title">GSoC - Wrapping Up</h1>
   <span class="post-tag">
       
         
@@ -184,44 +184,29 @@
 
   <hr>
 
-  <p>Greetings! The community bonding is officially closed now. It&#39;s time for the coding period. I had promised myself a post every sunday from the 24th of May 2015 but seems like the first post is a bit late. </p>
+  <p>From not knowing anything considerable in programming and open source to reaching this level, has been a wonderful ride. Google Summer of Code has been full of ups and downs but none the less exhilarating. <br/></p>
 
-<h3>Community bonding</h3>
+<p>Didn&#39;t even know at the time of my <a href="https://github.com/sympy/symengine/commit/f5243c034953efa228c708e97668a932dc216e37">first patch</a> that I would be so closely associated to SymEngine and the team members just a few months down the line.</p>
 
-<p>I had discussions with <a href="https://github.com/certik">Ondřej</a> and <a href="https://github.com/shivamvats">Shivam</a> about the big tasks in hand and how to go about handling the work. In the first discussion, we also assigned ourselves the first task that needs to be completed.<br/>
-I have to:<br/>
-* Clean up the necessary in the <a href="https://github.com/sympy/symengine/pull/406">PR</a> Shivam had sent during his proposal period.<br/>
-* Implement <code>sub_poly()</code> and <code>mul_poly()</code> with Kronecker substitution in a clean fashion.<br/>
-Shivam agreed to finish <code>ring_series</code> in <a href="https://github.com/sympy/sympy">SymPy</a> which he has already started working on.<br/>
-Also together we decided to work on a faster hashtable implementation.<br/>
-I also discussed with <a href="https://github.com/sushant-hiray">Sushant</a> about the structure of the current <a href="https://github.com/sympy/symengine">SymEngine</a> and cleared my doubts there.<br/></p>
+<p>After a couple of bug fixes, my first major contribution came in as the <a href="https://github.com/sympy/symengine/blob/master/symengine/polynomial.cpp"><code>UnivariatePolynomial</code></a> class. The biggest challenge here was implementing multiplication using Kronecker&#39;s trick. This was my first experience of implementing an algorithm from a <a href="http://www.cs.berkeley.edu/%7Efateman/papers/polysbyGMP.pdf">paper</a>. The <code>UnivariatePolynomial</code> class shaped up really well, there are minor improvements that can be made and some optimizations that could be done. But standalone, it is a fully functional class.</p>
 
-<p>As a part of community bonding, I looked to some tools that I&#39;ll be using. Certain C++11 constructs, visitor pattern, etc. Even though I am not thorough with it, I think learning it as I progress with the work is the best thing to do.</p>
+<p>Once this was done, my next aim was to optimize multiplication to reach <code>Piranha</code>&#39;s speed. This was a very enriching period and the discussions with the team members and <a href="https://github.com/bluescarni">Francesco</a> was a great learning experience. En route, I also got a chance to explore <code>Piranha</code> under the hood and trouble Francesco for reasoning why certain things were the way they. End of this, we were able to hit <code>Piranha</code>&#39;s speed. I remember I was the happiest I had been in days.</p>
 
-<p>Regarding the work I undertook in this period, is minimal, but here they are:<br/>
-<strong>Issues</strong><br/>
-<a href="https://github.com/sympy/symengine/issues/443">#443</a>: Documentation of SymEngine.<br/>
-<strong>Pull requests</strong><br/>
-As I read through the code I felt some clean ups necesarry which were done in <br/>
-<a href="https://github.com/sympy/symengine/pull/444">#444</a> and <a href="https://github.com/sympy/symengine/pull/438">#438</a>: Pending<br/>
-<a href="https://github.com/sympy/symengine/pull/451">#451</a>, <a href="https://github.com/sympy/symengine/pull/442">#442</a>, <a href="https://github.com/sympy/symengine/pull/441">#441</a> and <a href="https://github.com/sympy/symengine/pull/440">#440</a>: Merged<br/></p>
+<p>Once we hit the lower level speed, we decided to hard-depend on <code>Piranha</code> for <code>Polynomial</code>. This meant adding <code>Piranha</code> as SymEngine dependence. Here I had to learnt how to write and wrote <code>CMake</code> files as well as setting up Piranha testing in <code>Travis</code> meant writing <code>shell</code> and <code>CI</code> scripts. We faced a problem here, resolution to which meant implementing <code>Catch</code> as a testing framework for <code>SymEngine</code>. <code>Catch</code> is an awesome library and community is very pleasant. Implementing this was a fun work too.
+Also the high level value class <code>Expression</code> was implemented in <code>SymEngine</code>, mostly taken from Francesco&#39;s work.</p>
 
-<p>In my proposal, I had promised <a href="https://github.com/bluescarni/piranha">Piranha</a> audit but it didn&#39;t happen in such a short period due to complex code. Best way to go forward was to start work for <code>Polynomial</code>.<br/>
-The work regarding <code>Polynomial</code> class has already begun <a href="https://github.com/sympy/symengine/pull/454">here</a>. I thank the whole <a href="https://github.com/sympy/symengine">SymEngine</a> community for actively participating there and giving their inputs.<br/></p>
+<p>I then started writing the <code>Polynomial</code> class, most of the work is done here(<a href="https://github.com/sympy/symengine/pull/597">597</a>). But the design is not very well thought of. I say this because once ready this can only support integer(ZZ) domain. But we will also need rational(QQ) and expression(EX). The code will be of much use but we have been discussing a much cleaner implementation with <code>Ring</code> class. Most of the progress and the new design decisions are being documented <a href="https://github.com/sympy/symengine/wiki/En-route-to-Polynomial">here</a>.</p>
 
-<h3>Targets for Week 1</h3>
+<p>Second half has been really rough, with the university running. Ondrej has been really patient with me, I thank him for that. The bond that I made with him through mails, technical and non technical, has really grown strong. He has allowed me to continue the work the <code>Polynomial</code> and implement more details and algorithms in future. I am looking forward to that as long term association is an amazing thing and I am proud to be responsible for the <strong><code>Polynomial module in SymEngine</code></strong>.</p>
 
-<p>Complete the <code>Polynomial</code> class, need to implement:<br/>
-* basic functions <code>__hash__</code>, <code>__eq__</code>, <code>compare</code>, <code>from_dict</code> like other SymEngine classes.<br/>
-* Implement printer and tests for that.<br/>
-* Implement <code>add_poly()</code>, <code>neg_poly()</code>, <code>sub_poly()</code>, <code>mul_poly()</code>, <code>eval()</code> and respective tests.<br/>
-If possible, time permits<br/>
-* Start working on the hashtable along with <a href="https://github.com/shivamvats">Shivam</a>.<br/></p>
+<p>I am indebted to my mentor <a href="https://github.com/certik">Ondrej Certik</a> and all the <a href="https://gitter.im/sympy/symengine">SymEngine</a> and <a href="https://gitter.im/sympy/sympy">SymPy</a> developers who were ever ready to help and answer my silliest of questions. It’s an amazing community and they are really very helpful and always appreciated even the smallest of my contributions. The best part of SymEngine is you know contributors one to one and it is like a huge family of learners. I am looking forward to meeting the team (atleast SymPy India in near future).</p>
 
-<p>I am really excited as the coding period has officially started. The whole <a href="https://github.com/sympy/symengine">SymEngine</a> community has been active on <a href="https://gitter.im/sympy/symengine">Gitter</a> as well as <a href="https://github.com/sympy/symengine/pull/454">PR</a> discussion, looking forward to awesome learning experience with them.</p>
+<p>Google Summer of Code has been one exhilarating journey. I don&#39;t know if I was a good programmer then or a good programmer now but I can say that I am a better programmer now.</p>
 
-<p>That&#39;s all for now. Catch you next week.<br/>
-<strong>Freilos</strong>(German)</p>
+<p><strong>This is just the beginning of the ride, GSoC a stepping stone.</strong></p>
+
+<p>There will be blog posts coming here, so stay tuned. Till then, <br/>
+<strong>Bye</strong></p>
 
 </div>
 
@@ -239,15 +224,6 @@ If possible, time permits<br/>
     
       <li>
         <h3>
-          <a href="/GSoC-Wrapping-Up">
-            GSoC - Wrapping Up
-            <small>16 Aug 2015</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
           <a href="/GSoC-Progress-Week-10-&-11">
             GSoC Progress - Week 10 and 11
             <small>16 Aug 2015</small>
@@ -260,6 +236,15 @@ If possible, time permits<br/>
           <a href="/GSoC-Progress-Week-9">
             GSoC Progress - Week 9
             <small>24 Jul 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-8">
+            GSoC Progress - Week 8
+            <small>17 Jul 2015</small>
           </a>
         </h3>
       </li>
