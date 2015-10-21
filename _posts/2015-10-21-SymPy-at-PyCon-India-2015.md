@@ -50,7 +50,7 @@ Shivam delivered a lightning talk titled `Python can be fast`. Here, he stressed
 
 ![PyCon](/assets/pycon2015/lightningtalk.jpg)
 
-By this point, we had reached considerable audience in the conference and lot of them were really interested in SymPy. We had a lot of younger participants who were enthusiastic about SymPy as it participates, some of them also sent in patches.
+By this point, we had reached considerable audience in the conference and lot of them were really interested in SymPy. We had a lot of younger participants who were enthusiastic about SymPy as it participates in GSoC, some of them also sent in patches.
 
 <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Hacking sympy with <a href="https://twitter.com/abraarsyed01">@abraarsyed01</a> <a href="https://twitter.com/ethcelon">@ethcelon</a></p>&mdash; Devyani Kota(divs) (@Devyani_kush) <a href="https://twitter.com/Devyani_kush/status/650565162584268800">October 4, 2015</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
