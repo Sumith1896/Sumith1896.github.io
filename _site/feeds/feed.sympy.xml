@@ -4,7 +4,7 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-08-22T00:02:27+00:00</updated>
+ <updated>2015-10-21T12:27:55+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
@@ -13,9 +13,97 @@
 
  
  <entry>
+   <title>SymPy at PyCon India 2015</title>
+   <link href="http://sumith1896.github.io//SymPy-at-PyCon-India-2015"/>
+   <updated>2015-10-21T00:00:00+00:00</updated>
+   <id>http://sumith1896.github.io//SymPy-at-PyCon-India-2015</id>
+   <content type="html">&lt;h3&gt;The excitement&lt;/h3&gt;
+
+&lt;p&gt;People travelling from all over the country(and outside!) to Bangalore for a conference on a weekend, Yay! &lt;br/&gt;
+We were really excited about the workshop and devsprint that the SymPy team was about to deliver. More so excited we were about the fact that we will finally be meeting one another.&lt;/p&gt;
+
+&lt;h3&gt;Day 0&lt;/h3&gt;
+
+&lt;h4&gt;DevSprint&lt;/h4&gt;
+
+&lt;p&gt;The first day of the conference kicked off with the devsprints. That morning the whole team met up, present there were Harsh, Sudhanshu, AMiT, Sartaj, Shivam and Sumith . Abinash couldn&amp;#39;t make it but he was there in spirit :) &lt;br/&gt; We all got our awesome SymPy tees and stickers, thanks to AMiT. &lt;br/&gt;
+Having got alloted mentoring space in the  devsprint, basic introduction of SymPy was given by Sumith. Some interesting mentoring spaces were CPython by Kushal Das, Data Science by Bargava. The whole list is &lt;a href=&quot;https://in.pycon.org/cfp/pycon-india-dev-sprint-2015/proposals/&quot;&gt;here&lt;/a&gt; &lt;br/&gt;
+We got the participants started off with setting up the development workflow of SymPy and then they started working on the internals. We alloted bugs to many and directed them to the solution. Sadly, not many issues could alloted or closed due to the really poor internet connection at the conference hall but it was cool interacting with the enthusiasts. We also happened to meet Saurabh Jha, a contributor to SymPy who had worked on Linear Algebra and he helped us out with the devsprint.&lt;/p&gt;
+
+&lt;h4&gt;Workshop&lt;/h4&gt;
+
+&lt;p&gt;The workshops ran in two and a half hour slot. This was conducted by Harsh, Sudhanshu, AMiT and Sumith. &lt;br/&gt;
+Sumith started off with introduction to SymPy. Then we spent some helping everyone setup their systems with SymPy and IPython notebooks, even though prior instructions were given, we had to do this so as to get everyone on level ground. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Harsh took first half of the content and exercises &lt;br/&gt;
+Sudhanshu took the second half, while AMiT and Sumith were helping out the participants with their queries. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/workshop1.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;We distributed t-shirts to all the participants at the end. Thanks to all those who participated, we had an awesome time.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/workshop2.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Day 0 ended with all of us wrapping off the devsprint. &lt;br/&gt;
+After having dinner together, everybody headed back looking forward to the coming two days of the conference.&lt;/p&gt;
+
+&lt;h3&gt;Day 1&lt;/h3&gt;
+
+&lt;p&gt;Day 1 started off with a keynote by Dr Ajith Kumar B.P followed by multiple talks and lightning talks. &lt;br/&gt;
+More interesting than the scheduled talks were the conversations that we had with people present in the conference. Exchanging views, discussing on a common point of interest was surely one of the best experience that I had.&lt;/p&gt;
+
+&lt;h4&gt;Lightning talk&lt;/h4&gt;
+
+&lt;p&gt;Shivam delivered a lightning talk titled &lt;code&gt;Python can be fast&lt;/code&gt;. Here, he stressed on the fact that implementing correct data structures is important and Python is not always to be blamed. He gave relevant examples from his summers work at SymPy.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/lightningtalk.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;By this point, we had reached considerable audience in the conference and lot of them were really interested in SymPy. We had a lot of younger participants who were enthusiastic about SymPy as it participates, some of them also sent in patches.&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Hacking sympy with &lt;a href=&quot;https://twitter.com/abraarsyed01&quot;&gt;@abraarsyed01&lt;/a&gt; &lt;a href=&quot;https://twitter.com/ethcelon&quot;&gt;@ethcelon&lt;/a&gt;&lt;/p&gt;&amp;mdash; Devyani Kota(divs) (@Devyani_kush) &lt;a href=&quot;https://twitter.com/Devyani_kush/status/650565162584268800&quot;&gt;October 4, 2015&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;h3&gt;Day 2&lt;/h3&gt;
+
+&lt;p&gt;Day 2 started off with a keynote by Nicholas H.Tollervey.&lt;/p&gt;
+
+&lt;h4&gt;Talk&lt;/h4&gt;
+
+&lt;p&gt;Sumith delivered a talk titled &lt;code&gt;SymEngine: The future fast core of computer algebra systems&lt;/code&gt;. The content included SymPy, SymEngine and the interface. Some light was shed on Python wrappers to C++ code. Thanks to all the audience present there.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/talk.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;As the day was closing in, Harsh and Shivam had to leave to catch their flights.&lt;/p&gt;
+
+&lt;h4&gt;Open Space&lt;/h4&gt;
+
+&lt;p&gt;After multiple people requesting to help them get started with SymPy, we decided to conduct an open space. &lt;br/&gt;
+Open spaces are a way for people to come together to talk about topics, ideas or whatever they want. All people had to do is just show up :) Present there were Sudhanshu, Sartaj, AMiT and Sumith. Sartaj luckily came up with a &lt;code&gt;solveset&lt;/code&gt; bug. We had a live show of how bug-fixing is done. Filing an issue, fixing the code, writing tests and sending in a PR was all demonstrated.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/openspace.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Closing thoughts&lt;/h3&gt;
+
+&lt;p&gt;Conferences are the perfect place to discuss and share knowledge and ideas. The people present there were experts in their area of interests and conversations with them is a cool experience. Meeting the team was something that we were looking forward right from the start. &lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/team1.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Missing Sartaj and Abinash&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/pycon2015/team2.jpg&quot; alt=&quot;PyCon&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Discussing SymPy and the gossips in person is a different experience altogether. I&amp;#39;ll make sure to attend all the conference that I possibly can from hereon. &lt;/p&gt;
+
+&lt;p&gt;Thanks for the reading &lt;br/&gt;
+Be back for more &lt;br/&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>GSoC - Wrapping Up</title>
    <link href="http://sumith1896.github.io//GSoC-Wrapping-Up"/>
-   <updated>2015-08-16T00:00:00+00:00</updated>
+   <updated>2015-08-21T00:00:00+00:00</updated>
    <id>http://sumith1896.github.io//GSoC-Wrapping-Up</id>
    <content type="html">&lt;p&gt;From not knowing anything considerable in programming and open source to reaching this level, has been a wonderful ride. Google Summer of Code has been full of ups and downs but none the less exhilarating. &lt;br/&gt;&lt;/p&gt;
 
@@ -528,11 +616,12 @@ If possible, time permits&lt;br/&gt;
  </entry>
  
  <entry>
-   <title>Google Summer Of Code with SymPy</title>
-   <link href="http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy"/>
+   <title>SymPy at PyCon India 2015</title>
+   <link href="http://sumith1896.github.io//SymPy-at-PyCon-India-2015"/>
    <updated>2015-05-10T00:00:00+00:00</updated>
    <id>http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy</id>
-   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/gsoc/GSOC2015.png&quot; alt=&quot;GSoC 2015&quot;&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/pycon/workshop1.png&quot; alt=&quot;PyCon&quot;&gt;
+&amp;lt;!-- &lt;/p&gt;
 
 &lt;p&gt;Hi there! The Google Summer of Code results are out and I have been selected. As mentioned in a previous post, my project of &lt;code&gt;Implementing polynomial module in CSymPy&lt;/code&gt; has been selected and I get to work with &lt;a href=&quot;http://www.sympy.org/&quot;&gt;SymPy&lt;/a&gt; under &lt;a href=&quot;https://www.python.org/psf/&quot;&gt;Python Software Foundation.&lt;/a&gt;.&lt;/p&gt;
 
@@ -560,7 +649,7 @@ Plans to be the fast swappable SymPy core and also a CAS on it&amp;#39;s own. We
 
 &lt;p&gt;You can find the proposal &lt;a href=&quot;https://github.com/sympy/sympy/wiki/GSoC-2015-Application-Sumith-:-Implementing-polynomial-module-in-CSymPy&quot;&gt;here&lt;/a&gt; for more detailed description of the project.&lt;/p&gt;
 
-&lt;p&gt;Looking forward to a great summer and times to follow.&lt;/p&gt;
+&lt;p&gt;Looking forward to a great summer and times to follow. --&amp;gt;&lt;/p&gt;
 </content>
  </entry>
  

@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Google Summer Of Code with SymPy
+title: SymPy at PyCon India 2015
 tags:
-  - Programming
-  - GSoC
   - SymPy
-permalink: /Google-Summer-Of-Code-with-SymPy
+  - PyCon
+  - Python
+permalink: /SymPy-at-PyCon-India-2015
 ---
 
-![GSoC 2015](/assets/gsoc/GSOC2015.png)
-
+![PyCon](/assets/pycon/workshop1.png)
+<!-- 
 
 Hi there! The Google Summer of Code results are out and I have been selected. As mentioned in a previous post, my project of `Implementing polynomial module in CSymPy` has been selected and I get to work with [SymPy](http://www.sympy.org/) under [Python Software Foundation.](https://www.python.org/psf/).
 
@@ -35,4 +35,4 @@ Plans to be the fast swappable SymPy core and also a CAS on it's own. We are cur
 
  You can find the proposal [here](https://github.com/sympy/sympy/wiki/GSoC-2015-Application-Sumith-:-Implementing-polynomial-module-in-CSymPy) for more detailed description of the project.
 
- Looking forward to a great summer and times to follow.
+ Looking forward to a great summer and times to follow. -->
