@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="keywords" content="sumith1896, sumith, iitb, sympy, books, github">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Google Summer Of Code with SymPy &middot; Sumith
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  </head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Programmer · Book Addict · Foodie</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://sumith1896.github.io">Blog</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="http://sumith1896.github.io/timeline">Archive</a>
+
+    <span class="sidebar-nav-item">Contact</span>
+    <a class="sidebar-nav-item" href="https://github.com/Sumith1896">GitHub</a>
+    <a class="sidebar-nav-item" href="mailto:sumith1896@gmail.com">Gmail</a>
+    <a class="sidebar-nav-item" href="https://www.facebook.com/sumith.iitb">Facebook</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2015. Sumith1896.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Sumith</a>
+            <small>: Optimized Awesomeness</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <span class="post-date">
+    <a href="/timeline" class="timeline">
+      10 May 2015
+    </a>
+  </span>
+  <h1 class="post-title">Google Summer Of Code with SymPy</h1>
+  <span class="post-tag">
+      
+        
+          <a href="/tags/#Programming">
+            Programming
+          </a>
+          &middot;
+        
+      
+        
+          <a href="/tags/#GSoC">
+            GSoC
+          </a>
+          &middot;
+        
+      
+        
+          <a href="/tags/#SymPy">
+            SymPy
+          </a>
+
+        
+      
+  </span>
+
+  <hr>
+
+  <p><img src="/assets/gsoc/GSOC2015.png" alt="GSoC 2015"></p>
+
+<p>Hi there! The Google Summer of Code results are out and I have been selected. As mentioned in a previous post, my project of <code>Implementing polynomial module in CSymPy</code> has been selected and I get to work with <a href="http://www.sympy.org/">SymPy</a> under <a href="https://www.python.org/psf/">Python Software Foundation.</a>.</p>
+
+<h3>The excitement</h3>
+
+<p>I really thank the community for accepting a freshman do a project. The community over at SymPy is so helpful and the working environment real fun that has motivated me to take up this project.<br/>
+My mentors are <a href="https://github.com/certik">Ondřej Čertík</a> himself and <a href="https://github.com/sushant-hiray">Sushant Hiray</a>, who is a previous GSoC-cer at SymEngine(then CSymPy).<br/>
+I&#39;d also like to congratulate <a href="https://github.com/shivamvats">Shivam</a>, <a href="https://github.com/isuruf">Isuru</a>, <a href="https://github.com/abinashmeher999">Abinash</a> for getting projects under SymEngine and all others who have been selected under SymPy and Python Software Foundations in general.<br/>
+I am excited for the summer to follow and the great learning experience ahead.</p>
+
+<h3>SymPy and SymEngine</h3>
+
+<p><img style="float: right" src="/assets/gsoc/sympy.png"></p>
+
+<blockquote>
+<p>SymPy is a Python library for symbolic mathematics. It aims to become a full-featured <strong><a href="http://en.wikipedia.org/wiki/Computer_algebra_system">Computer Algebra System</a></strong> (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible.</p>
+
+<p><a href="https://github.com/sympy/symengine">SymEngine</a> is a fast symbolic manipulation library, written in C++.
+Plans to be the fast swappable SymPy core and also a CAS on it&#39;s own. We are currently writing Ruby and Julia wrappers for it too.</p>
+</blockquote>
+
+<h3>The Project</h3>
+
+<p>SymEngine currently lacks a polynomial module which is very essential in achieving SymEngine&#39;s goal of being the fastest CAS ever. Having a polynomial module is a core concern and implementing a fast module also help in achieving a fast series module and other modules. Once implemented, SymEngine will be more capable as a fast optional SymPy core which we think is good to ship before 1.0 and at the same time SymEngine becomes a powerful CAS on it&#39;s own.</p>
+
+<p>You can find the proposal <a href="https://github.com/sympy/sympy/wiki/GSoC-2015-Application-Sumith-:-Implementing-polynomial-module-in-CSymPy">here</a> for more detailed description of the project.</p>
+
+<p>Looking forward to a great summer and times to follow.</p>
+
+</div>
+
+<div class="social">
+  <span>
+    <iframe src="http://ghbtns.com/github-btn.html?user=sumith1896&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20">
+    </iframe>
+  </span>
+</div>
+
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/SymPy-at-PyCon-India-2015">
+            SymPy at PyCon India 2015
+            <small>21 Oct 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Wrapping-Up">
+            GSoC - Wrapping Up
+            <small>21 Aug 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/GSoC-Progress-Week-10-&-11">
+            GSoC Progress - Week 10 and 11
+            <small>16 Aug 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="disqus">
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'sumith1896';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    
+</div>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48537986-1', 'sumith1896.github.io');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

@@ -4,7 +4,7 @@
  <title>Sumith</title>
  <link href="http://sumith1896.github.io//atom.xml" rel="self"/>
  <link href="http://sumith1896.github.io//"/>
- <updated>2015-10-21T12:55:04+00:00</updated>
+ <updated>2015-10-21T13:05:06+00:00</updated>
  <id>http://sumith1896.github.io/</id>
  <author>
    <name>Sumith</name>
@@ -616,12 +616,11 @@ If possible, time permits&lt;br/&gt;
  </entry>
  
  <entry>
-   <title>SymPy at PyCon India 2015</title>
-   <link href="http://sumith1896.github.io//SymPy-at-PyCon-India-2015"/>
+   <title>Google Summer Of Code with SymPy</title>
+   <link href="http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy"/>
    <updated>2015-05-10T00:00:00+00:00</updated>
    <id>http://sumith1896.github.io//Google-Summer-Of-Code-with-SymPy</id>
-   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/pycon/workshop1.png&quot; alt=&quot;PyCon&quot;&gt;
-&amp;lt;!-- &lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;/assets/gsoc/GSOC2015.png&quot; alt=&quot;GSoC 2015&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Hi there! The Google Summer of Code results are out and I have been selected. As mentioned in a previous post, my project of &lt;code&gt;Implementing polynomial module in CSymPy&lt;/code&gt; has been selected and I get to work with &lt;a href=&quot;http://www.sympy.org/&quot;&gt;SymPy&lt;/a&gt; under &lt;a href=&quot;https://www.python.org/psf/&quot;&gt;Python Software Foundation.&lt;/a&gt;.&lt;/p&gt;
 
@@ -649,7 +648,7 @@ Plans to be the fast swappable SymPy core and also a CAS on it&amp;#39;s own. We
 
 &lt;p&gt;You can find the proposal &lt;a href=&quot;https://github.com/sympy/sympy/wiki/GSoC-2015-Application-Sumith-:-Implementing-polynomial-module-in-CSymPy&quot;&gt;here&lt;/a&gt; for more detailed description of the project.&lt;/p&gt;
 
-&lt;p&gt;Looking forward to a great summer and times to follow. --&amp;gt;&lt;/p&gt;
+&lt;p&gt;Looking forward to a great summer and times to follow.&lt;/p&gt;
 </content>
  </entry>
  
