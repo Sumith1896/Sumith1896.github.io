@@ -12,14 +12,17 @@ Hi there! I initially intended to regularly update this blog with my work at EPF
 
 ### Pictures
 
+![LARA](/assets/epfl/lara.jpg)
+*Team LARA, EPFL*<br> 
+
 ![My workstation](/assets/epfl/workstation.jpg)
 *My workstation at LARA, EPFL*<br> 
 
 ![Scala stairs](/assets/epfl/scalastairs.jpg)
-*The awesome stairs and also the logo of Scala*<br> 
+*The awesome stairs and also the logo of Scala*<br> <!-- 
 
 ![Cooking](/assets/epfl/cooking.jpg)
-*Had my fair share of cooking experience at Laussane*<br> 
+*Had my fair share of cooking experience at Laussane*<br>  -->
 
 ![Co-interns](/assets/epfl/cointerns.jpg)
 *Wonderful set (well, subset) of my co-interns*<br> 
